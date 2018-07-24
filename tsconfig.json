@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "typeRoots": [ "node_modules/@types" ],
+        "outDir": "./dist",
+        "experimentalDecorators": true,
+        "target": "es5",
+        "emitDecoratorMetadata": true,
+        "lib": [ "es2015", "dom" ],
+        "suppressImplicitAnyIndexErrors": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "paths": {
+          "@ilion/effects/*":  ["shared/client/effects/*"],
+          "@ilion/stores/*":   ["shared/client/stores/*"],
+          "@ilion/models/*":   ["shared/models/*"],
+          "@ilion/mocks/*":    ["shared/test/*"],
+          "@ilion/services/*": ["shared/services/*"],
+          "@ilion/shared/*":   ["shared/*"],
+          "@ilion/env/*": ["web/*"]
+        }
+    },
+    "include": [
+        "web/app/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules/**/*"
+    ]
+}

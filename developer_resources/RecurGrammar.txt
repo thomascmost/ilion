@@ -1,0 +1,35 @@
+Grammar for a RuleSet Specifying Recurring Performances
+
+<ruleset>        := <rule> | <rule>;<ruleset>
+<rule>           := <day_rule> | <week_rule> | <month_rule> | <year_rule>
+<day_rule>       := D<integer><times_spec>
+<week_rule>      := W<integer><week_subrules>
+<week_subrules>  := <week_subrule> | <week_subrule>&<week_subrules>
+<week_subrule>   := <day_of_week><times_spec>
+<month_rule>     := M<integer> (<mDate_subrules> | <mOrder_subrules>)
+<mDate_subrules> := <mDate_subrule> | <mDate_subrule>&<mDate_subrules>
+<mDate_subrule>  := d<integers><times_spec>
+<mOrder_subrules>:= <mOrder_subrule> | <mOrder_subrule>&<mOrder_subrules>
+<mOrder_subrule> := o<ord_ints><day_of_week><times_spec>
+<year_rule>      := Y<integer> (<yDate_subrules> | <yOrder_subrules>)
+<yDate_subrules> := <yDate_subrule> | <yDate_subrule>&<yDate_subrules>
+<yDate_subrule>  := d<month><integer><times_spec>
+<yOrder_subrules>:= <yOrder_subrule> | <yOrder_subrule>&<yOrder_subrules>
+<yOrder_subrule> := o<ord_int><day_of_week>%<month><times_spec>
+<integers>       := <integer> | <integer>,<integers>
+<ord_ints>       := <ord_int> | <ord_int>,<ord_ints>
+<ord_int>        := 1 | 2 | 3 | 4 | 5 | -1
+<days_of_week>   := <day_of_week> | <day_of_week>,<days_of_week>
+<day_of_week>    := Su | Mo | Tu | We | Th | Fr | Sa
+<month>          := Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec
+<times_spec>     := @<times>
+<times>          := <time> | <time>,<times>
+
+
+Notes:
+1. There are no spaces in this grammar! Spacing is only used for readability.
+2. There are no parentheses in this grammar. Parentheses are only used for grouping.
+3. Each top-level rule type begins with a letter and is followed by an integer. The integer specifies
+   the repeat frequency. E.g. D3 means "every three days" and "W7" means "every seven weeks". Most commonly,
+   we'll probably have D1, W1, M1, and Y1.
+4. <time> is of the format hh:mm where hh is in 24-hour time.
