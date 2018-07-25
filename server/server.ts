@@ -37,7 +37,6 @@ import * as express from "express";
 const domainMiddleware = require("express-domain-middleware");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const session = require("express-session");
 import * as passport from "passport";
 const path = require("path");
 
@@ -46,10 +45,10 @@ const exphbs  = require("express-handlebars");
 // force https
 const sslRedirect = require("heroku-ssl-redirect");
 
-import * as db from "./abstraction/db.access";
-db.checkDatabaseVersion();
+// import * as db from "./abstraction/db.access";
+// db.checkDatabaseVersion();
 
-import { dataSafety } from "./data-safety.middleware";
+// import { dataSafety } from "./data-safety.middleware";
 
 //Initializes the Express application
 var app = express();
@@ -103,23 +102,14 @@ app.use(domainMiddleware);
 //--------------------------------------------------------------------------------------TCMoore//
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-//serverside apis for handling requests from the client
-
-// var apiAuth =     require('./api/auth')(passport)
-// var apiGroups =   require('./api/groups')(passport)
-// var apiMeta =     require('./api/meta')(passport)
-// var apiPhotos =   require('./api/photos')(passport)
-
 //requiring sessions as a function so that we can pass the passport object as a param
-import apiAuth from "./api/auth.api";
-import apiSessions from "./api/sessions.api";
-import apiUsers from "./api/users.api";
+// import apiAuth from "./api/auth.api";
+// import apiSessions from "./api/sessions.api";
+// import apiUsers from "./api/users.api";
 
-app.use("/api/auth",          apiAuth());
-// app.use('/api/groups',     apiGroups)
-// app.use('/api/meta',       apiMeta)
-app.use("/api/sessions",      apiSessions(passport)); //and namespacing the route as normal after the modified require line.
-app.use("/api/users",         apiUsers());
+// app.use("/api/auth",          apiAuth());
+// app.use("/api/sessions",      apiSessions(passport)); //and namespacing the route as normal after the modified require line.
+// app.use("/api/users",         apiUsers());
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -131,7 +121,7 @@ app.use("/api/users",         apiUsers());
 //Called by next() in the routes
 //Iterates recursively through data object and sanitizes all strings.
 //--------------------------------------------------------------------------------------TCMoore//
-app.use(dataSafety);
+// app.use(dataSafety);
 
 // Main Route
 //--------------------------------------------------------------------------------------TCMoore//

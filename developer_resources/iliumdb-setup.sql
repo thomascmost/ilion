@@ -30,6 +30,7 @@ CREATE TABLE `user` (
 	`created` timestamp DEFAULT CURRENT_TIMESTAMP,
    `updated` timestamp ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	`handle` varchar(20) NOT NULL,
+	`name` varchar(128) NOT NULL,
 	`email` varchar(100) NOT NULL,
 	`registered` tinyint(1) NOT NULL DEFAULT 0,
    `verified` tinyint(1) NOT NULL DEFAULT 0,

@@ -14,19 +14,16 @@
         "suppressImplicitAnyIndexErrors": true,
         "moduleResolution": "node",
         "baseUrl": ".",
-        "paths": {
-          "@ilium/effects/*":  ["shared/client/effects/*"],
-          "@ilium/stores/*":   ["shared/client/stores/*"],
-          "@ilium/models/*":   ["shared/models/*"],
-          "@ilium/mocks/*":    ["shared/test/*"],
-          "@ilium/services/*": ["shared/services/*"],
-          "@ilium/shared/*":   ["shared/*"],
-          "@ilium/env/*": ["web/*"]
-        }
+      //   "paths": {
+      //     "@ilium/effects/*":  ["shared/client/effects/*"],
+      //     "@ilium/stores/*":   ["shared/client/stores/*"],
+      //     "@ilium/models/*":   ["shared/models/*"],
+      //     "@ilium/mocks/*":    ["shared/test/*"],
+      //     "@ilium/services/*": ["shared/services/*"],
+      //     "@ilium/shared/*":   ["shared/*"],
+      //     "@ilium/env/*": ["web/*"]
+      //   }
     },
-    "include": [
-        "web/app/**/*.ts"
-    ],
     "exclude": [
         "node_modules/**/*"
     ]
