@@ -6,7 +6,7 @@ import * as passport from "passport";
 import * as jwt from "jsonwebtoken";
 
 import Env from "../env";
-import { User } from "@ilion/models/user.model";
+import { User } from "@ilium/models/user.model";
 
 const JWT_SECRET = Env.JWT_SECRET;
 

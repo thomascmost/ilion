@@ -6,12 +6,12 @@ let router = express.Router();
 
 import { isAuthenticated } from "./auth-middleware";
 
-import * as utilities from "@ilion/shared/utilities";
+import * as utilities from "@ilium/shared/utilities";
 import { UserAbst } from "../abstraction/user.abst";
 import { UserCreate } from "../abstraction/user-create";
 import { User } from "../classes/user";
-import { IPasswordResetCredentials } from "@ilion/models/credentials.model";
-import { Val } from "@ilion/shared/validation";
+import { IPasswordResetCredentials } from "@ilium/models/credentials.model";
+import { Val } from "@ilium/shared/validation";
 
 // //Router is namespaced in server.js to /api/auth
 

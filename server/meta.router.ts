@@ -26,7 +26,7 @@ router.get("/i/project/:projectID", function (req:express.Request, res: express.
              socialUrl: req.protocol + "://" + req.headers.host + req.url,
              socialTitle: yoller.title,
              socialDescription: stripHtml(yoller.description),
-             socialImageUrl: yoller.coverImgURL || "https://www.ilion.com/img/card.png"
+             socialImageUrl: yoller.coverImgURL || "https://www.ilium.com/img/card.png"
          })
       }
       else {
@@ -51,7 +51,7 @@ router.get("/:handle", function (req:express.Request, res: express.Response, nex
              socialUrl: req.protocol + "://" + req.headers.host + req.url,
              socialTitle: user.alias,
              socialDescription: user.bio,
-             socialImageUrl: user.profilePhoto || "https://www.ilion.com/img/card.png"
+             socialImageUrl: user.profilePhoto || "https://www.ilium.com/img/card.png"
          })
       }
       else {

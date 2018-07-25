@@ -20,38 +20,6 @@ export default abstract class Env {
       return process.env.MYSQL_HOST;
    }
 
-   static get SENDGRID_KEY(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get SENDGRID_EMAIL(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get S3_USER_PHOTO(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get S3_PROJ_PHOTO(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get BLOB_ACCT(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get BLOB_KEY(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get BLOB_CONTAINER(): string {
-      return process.env.MYSQL_HOST;
-   }
-
-   static get BLOB_BASEURL(): string {
-      return process.env.MYSQL_HOST;
-   }
-
    static get JWT_SECRET(): string {
       return process.env.JWT_SECRET;
    }

@@ -1,4 +1,4 @@
-import {IUserCreate} from '@ilion/models/user-types'
+import {IUserCreate} from '@ilium/models/user-types'
 
 export class UserCreate implements IUserCreate
    {

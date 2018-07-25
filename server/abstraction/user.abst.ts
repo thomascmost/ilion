@@ -3,20 +3,20 @@ import * as db from "./db.access";
 import * as Q from 'q';
 
 import {GetTimezoneFromGoogle} from "../place-dets";
-import {IUserSettings} from "@ilion/models/user-types";
-// import {OkPacket, UploadImageResult} from '@ilion/models/other.model';
-import {YollerInfoDto, CollabDto} from "@ilion/models/yoller-info";
-import {OkPacket, EmailAvailabilityStatus} from "@ilion/models/other.model";
+import {IUserSettings} from "@ilium/models/user-types";
+// import {OkPacket, UploadImageResult} from '@ilium/models/other.model';
+import {YollerInfoDto, CollabDto} from "@ilium/models/yoller-info";
+import {OkPacket, EmailAvailabilityStatus} from "@ilium/models/other.model";
 import {UserCreate} from "./user-create";
 import {User, UserMin, UserRow, UserRowExt} from "../classes/user";
 import YStrings from "../strings";
-import {IFeedFilter, UserUpcomingFilters} from "@ilion/models/feed.model";
+import {IFeedFilter, UserUpcomingFilters} from "@ilium/models/feed.model";
 import {EmailAbst} from "./email.abst";
-import {YollerBlock} from "@ilion/models/yoller-block.model";
+import {YollerBlock} from "@ilium/models/yoller-block.model";
 import {YollerBlocks} from "./yoller-blocks.abst";
 import {YollerSetsAbst} from "./yoller-sets.abst";
 
-import { Val } from "@ilion/shared/validation";
+import { Val } from "@ilium/shared/validation";
 
 export interface ILoginResult
    {
@@ -893,7 +893,7 @@ export abstract class UserAbst
                if (!dontSend)
                   {
                   EmailAbst.send(
-                  "Ilion -- Please Confirm your Email Address",
+                  "Ilium -- Please Confirm your Email Address",
                   "If you recently changed your email address to "+email+", please click "+
                   "<a href=" + YStrings.RETURN_HOST + "api/auth/confirm/" + code + ">here</a> to confirm this change. <br/><br/>Thanks!",
                   email, uid)
@@ -1078,8 +1078,8 @@ export abstract class UserAbst
             deferred.resolve(false)
          } else {
             EmailAbst.send(
-               "Welcome to Ilion",
-               "<h1 style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>Welcome to Ilion</span></h1><p style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>To confirm your email address, please click </span><span style='helvetica, sans-serif; text-align: center;'><a href='" + YStrings.RETURN_HOST + "api/auth/confirm/"+results[0].code+"'>here</a>.",
+               "Welcome to Ilium",
+               "<h1 style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>Welcome to Ilium</span></h1><p style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>To confirm your email address, please click </span><span style='helvetica, sans-serif; text-align: center;'><a href='" + YStrings.RETURN_HOST + "api/auth/confirm/"+results[0].code+"'>here</a>.",
                results[0].email, uid
             ).then(function()
             {
@@ -1109,7 +1109,7 @@ export abstract class UserAbst
                   db.makeQuery("INSERT INTO `pending_password_reset` (`user_id`, `code`) VALUES (?, ?)", [userID, code]).then(function()
                   {
                      EmailAbst.send(
-                        "Ilion | Password Reset",
+                        "Ilium | Password Reset",
                         "If you requested a password reset, click " +
                         "<a href='" + YStrings.RETURN_HOST + "i/auth/reset/" +code+ "'>here</a> " +
                         "to set your new password. If not, don\'t worry! Nothing has been changed.",
@@ -1128,7 +1128,7 @@ export abstract class UserAbst
          db.makeQuery("INSERT INTO `pending_password_reset` (`user_id`, `code`) VALUES (?, ?)", [userID, code]).then(function()
          {
             EmailAbst.send(
-               "Ilion | Password Reset",
+               "Ilium | Password Reset",
                "If you requested a password reset, click " +
                "<a href='" + YStrings.RETURN_HOST + "i/auth/reset/"+code+"'>here</a> " +
                "to set your new password. If not, don\'t worry! Nothing has been changed.",
@@ -1153,8 +1153,8 @@ export abstract class UserAbst
             deferred.resolve(false)
          } else {
             EmailAbst.send(
-               "Welcome to Ilion",
-               "<h1 style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>Welcome to Ilion</span></h1><p style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>You've been added to " + yoller.title + " as " + cp.role + ".<br/><br/<p style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>Ilion is an event networking site for theater artists, and you've been invited to join!<br/><br/>Sign up <a href='" + YStrings.RETURN_HOST + "api/auth/confirm/" +results[0].code+"'>here</a>.",
+               "Welcome to Ilium",
+               "<h1 style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>Welcome to Ilium</span></h1><p style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>You've been added to " + yoller.title + " as " + cp.role + ".<br/><br/<p style='text-align: center;'><span style='font-family:trebuchet ms,helvetica,sans-serif;'>Ilium is an event networking site for theater artists, and you've been invited to join!<br/><br/>Sign up <a href='" + YStrings.RETURN_HOST + "api/auth/confirm/" +results[0].code+"'>here</a>.",
                results[0].email,
                userID
             ).then(function()
@@ -1184,7 +1184,7 @@ export abstract class UserAbst
 
                   EmailAbst.send(
                     "Did you follow " + followee.alias + "?",
-                    "<h1 style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">You followed " +  followee.alias + " on Ilion!</span></h1><p style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when " + followee.alias + " is in a show, click <a href=\"" + YStrings.RETURN_HOST + "api/auth/confirmFollowing?followeeActiveID="+ followee.activeID +"&code="+results[0].code+"\">here</a>.",
+                    "<h1 style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">You followed " +  followee.alias + " on Ilium!</span></h1><p style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when " + followee.alias + " is in a show, click <a href=\"" + YStrings.RETURN_HOST + "api/auth/confirmFollowing?followeeActiveID="+ followee.activeID +"&code="+results[0].code+"\">here</a>.",
                     emailRes[0].email,
                     userID
                   ).then(function()
@@ -1197,7 +1197,7 @@ export abstract class UserAbst
 
                EmailAbst.send(
                  "Did you follow " + followee.alias + "?",
-                 "<h1 style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">You followed " +  followee.alias + " on Ilion!</span></h1><p style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when " + followee.alias + " is in a show, click <a href= YStrings.RETURN_HOST + \"api/auth/confirmFollowing?followeeActiveID="+ followee.activeID +"&code="+results[0].code+"\">here</a>.",
+                 "<h1 style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">You followed " +  followee.alias + " on Ilium!</span></h1><p style=\"text-align: center;\"><span style=\"font-family:trebuchet ms,helvetica,sans-serif;\">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when " + followee.alias + " is in a show, click <a href= YStrings.RETURN_HOST + \"api/auth/confirmFollowing?followeeActiveID="+ followee.activeID +"&code="+results[0].code+"\">here</a>.",
                  email,
                  userID
                ).then(function()

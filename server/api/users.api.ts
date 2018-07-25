@@ -8,14 +8,14 @@ import { UserAbst } from "../abstraction/user.abst";
 import { UserCreate } from "../abstraction/user-create";
 import { User } from "../classes/user";
 import * as ServerUtil from "../util";
-import * as utilities from "@ilion/shared/utilities";
+import * as utilities from "@ilium/shared/utilities";
 
-import { IUserSettings } from "@ilion/models/user-settings";
+import { IUserSettings } from "@ilium/models/user-settings";
 
 //Universal Validation Module
-import { Val, ValObject } from "@ilion/shared/validation";
+import { Val, ValObject } from "@ilium/shared/validation";
 
-import { ISignupCredentials } from "@ilion/models/credentials.model"
+import { ISignupCredentials } from "@ilium/models/credentials.model"
 import { SuggestedFollows } from "../abstraction/suggested-follow.abst";
 import { IYRequest } from "../classes/express-request-augmented";
 

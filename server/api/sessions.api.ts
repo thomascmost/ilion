@@ -5,7 +5,7 @@
 import * as express from "express";
 let router = express.Router();
 
-import { User } from "@ilion/models/user.model";
+import { User } from "@ilium/models/user.model";
 import { isAuthenticated, sendUserTokenPackage } from "./auth-middleware";
 import { UserAbst } from "../abstraction/user.abst";
 

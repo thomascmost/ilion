@@ -3,8 +3,8 @@ import * as Q from "q";
 // import * as sendgrid from 'sendgrid';
 // import YStrings from '../strings';
 // import {UserCreate} from './user-create';
-import {IUserSettings} from "@ilion/models/user-types";
-import {OkPacket, UpImgRes} from "@ilion/models/other.model";
+import {IUserSettings} from "@ilium/models/user-types";
+import {OkPacket, UpImgRes} from "@ilium/models/other.model";
 
 /*-----------------------------------------------------------------------------------------------------------
    UserRow
@@ -388,9 +388,9 @@ export class UserMin
 //                   db.makeQuery("INSERT INTO `pending_password_reset` (`user_id`, `code`) VALUES (?, ?)", [obj.id, code]).then(function()
 //                   {
 //                      obj.sendEmail(
-//                         'Ilion -- Reset Password',
+//                         'Ilium -- Reset Password',
 //                         'If you requested a password reset, click ' +
-//                         '<a href="https://ilion.com/i/auth/reset/'+code+'">here</a> ' +
+//                         '<a href="https://ilium.com/i/auth/reset/'+code+'">here</a> ' +
 //                         'to set your new password. If not, don\'t worry! Nothing has been changed.',
 //                         results[0].email
 //                      ).then(function()
@@ -406,9 +406,9 @@ export class UserMin
 //          db.makeQuery("INSERT INTO `pending_password_reset` (`user_id`, `code`) VALUES (?, ?)", [obj.id, code]).then(function()
 //          {
 //             obj.sendEmail(
-//                'Ilion -- Reset Password',
+//                'Ilium -- Reset Password',
 //                'If you requested a password reset, click ' +
-//                '<a href="https://ilion.com/i/auth/reset/'+code+'">here</a> ' +
+//                '<a href="https://ilium.com/i/auth/reset/'+code+'">here</a> ' +
 //                'to set your new password. If not, don\'t worry! Nothing has been changed.'
 //             ).then(function()
 //             {
@@ -432,8 +432,8 @@ export class UserMin
 //    //          deferred.resolve(false)
 //    //       } else {
 //    //          obj.sendEmail(
-//    //             'Welcome to Ilion',
-//    //             '<h1 style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Welcome to Ilion</span></h1><p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">You\'ve been added to ' + yoller.title + ' as ' + cp.role + '.<br/><br/<p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Ilion is an event networking site for theater artists, and you\'ve been invited to join!<br/><br/>Sign up <a href="https://ilion.com/api/auth/confirm/'+results[0].code+'">here</a>.',
+//    //             'Welcome to Ilium',
+//    //             '<h1 style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Welcome to Ilium</span></h1><p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">You\'ve been added to ' + yoller.title + ' as ' + cp.role + '.<br/><br/<p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">Ilium is an event networking site for theater artists, and you\'ve been invited to join!<br/><br/>Sign up <a href="https://ilium.com/api/auth/confirm/'+results[0].code+'">here</a>.',
 //    //             results[0].email
 //    //          ).then(function()
 //    //          {
@@ -462,7 +462,7 @@ export class UserMin
 // 
 //                   obj.sendEmail(
 //                     'Did you follow ' + followee.alias + '?',
-//                     '<h1 style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">You followed ' +  followee.alias + ' on Ilion!</span></h1><p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when ' + followee.alias + ' is in a show, click <a href="https://ilion.com/api/auth/confirmFollowing?followeeActiveID='+ followee.activeID +'&code='+results[0].code+'">here</a>.',
+//                     '<h1 style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">You followed ' +  followee.alias + ' on Ilium!</span></h1><p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when ' + followee.alias + ' is in a show, click <a href="https://ilium.com/api/auth/confirmFollowing?followeeActiveID='+ followee.activeID +'&code='+results[0].code+'">here</a>.',
 //                     emailRes[0].email
 //                   ).then(function()
 //                   {
@@ -474,7 +474,7 @@ export class UserMin
 // 
 //                obj.sendEmail(
 //                  'Did you follow ' + followee.alias + '?',
-//                  '<h1 style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">You followed ' +  followee.alias + ' on Ilion!</span></h1><p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when ' + followee.alias + ' is in a show, click <a href="https://ilion.com/api/auth/confirmFollowing?followeeActiveID='+ followee.activeID +'&code='+results[0].code+'">here</a>.'
+//                  '<h1 style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">You followed ' +  followee.alias + ' on Ilium!</span></h1><p style="text-align: center;"><span style="font-family:trebuchet ms,helvetica,sans-serif;">If you didn\'t, then don\'t worry; no action is necessary.<br/><br/>But to receive emails when ' + followee.alias + ' is in a show, click <a href="https://ilium.com/api/auth/confirmFollowing?followeeActiveID='+ followee.activeID +'&code='+results[0].code+'">here</a>.'
 //                ).then(function()
 //                {
 //                  deferred.resolve(true)

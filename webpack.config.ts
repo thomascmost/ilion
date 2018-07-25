@@ -34,7 +34,7 @@ var productionConfig = {
             { from: "web/static" }
          ]),
          new HtmlWebpackPlugin({
-            title: "Ilion",
+            title: "Ilium",
             inject: "body",
             hash: true,
             template: "web/index.html"

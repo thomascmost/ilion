@@ -1,5 +1,5 @@
 {
-  "name": "ilion",
+  "name": "ilium",
   "version": "1.5.0",
   "description": "the artist network",
   "main": "main.js",
@@ -19,19 +19,7 @@
     "test-watch": "jest --watch"
   },
   "dependencies": {
-    "@angular/animations": "^6.0.5",
-    "@angular/cdk": "^6.3.0",
-    "@angular/common": "^6.0.5",
-    "@angular/compiler": "^6.0.5",
-    "@angular/core": "^6.0.5",
-    "@angular/forms": "^6.0.5",
-    "@angular/http": "^6.0.5",
-    "@angular/material": "^6.3.0",
-    "@angular/platform-browser": "^6.0.5",
-    "@angular/platform-browser-dynamic": "^6.0.5",
-    "@angular/router": "^6.0.5",
-    "@ngrx/effects": "^5.2.0",
-    "@ngrx/store": "^5.2.0",
+    "awilix": "^3.0.9",
     "aws-sdk": "^2.259.1",
     "body-parser": "^1.18.3",
     "bourbon": "^4.3.4",
@@ -64,6 +52,13 @@
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "q": "^1.5.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.1",
     "rxjs-compat": "^6.2.1",
@@ -75,11 +70,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://tcmoore@bitbucket.org/ilion/ilion.git"
+    "url": "git+https://tcmoore@bitbucket.org/ilium/ilium.git"
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/ilion/ilion#readme",
+  "homepage": "https://bitbucket.org/ilium/ilium#readme",
   "devDependencies": {
     "@angular/cli": "^6.0.8",
     "@types/body-parser": "0.0.33",
@@ -96,6 +91,8 @@
     "@types/node": "^6.0.113",
     "@types/passport": "^0.3.5",
     "@types/q": "^1.5.0",
+    "@types/react": "^16.4.7",
+    "@types/react-dom": "^16.0.6",
     "@types/sendgrid": "^2.0.31",
     "@types/webpack": "^3.8.12",
     "awesome-typescript-loader": "^5.1.1",
@@ -156,13 +153,13 @@
       "(/native/.*)"
     ],
     "moduleNameMapper": {
-      "@ilion/models(.*)$": "<rootDir>/shared/models/$1",
-      "@ilion/effects(.*)$": "<rootDir>/shared/client/effects/$1",
-      "@ilion/stores(.*)$": "<rootDir>/shared/client/stores/$1",
-      "@ilion/shared(.*)$": "<rootDir>/shared/$1",
-      "@ilion/services(.*)$": "<rootDir>/shared/services/$1",
-      "@ilion/mocks(.*)$": "<rootDir>/shared/test/$1",
-      "@ilion/env(.*)$": "<rootDir>/web/$1"
+      "@ilium/models(.*)$": "<rootDir>/shared/models/$1",
+      "@ilium/effects(.*)$": "<rootDir>/shared/client/effects/$1",
+      "@ilium/stores(.*)$": "<rootDir>/shared/client/stores/$1",
+      "@ilium/shared(.*)$": "<rootDir>/shared/$1",
+      "@ilium/services(.*)$": "<rootDir>/shared/services/$1",
+      "@ilium/mocks(.*)$": "<rootDir>/shared/test/$1",
+      "@ilium/env(.*)$": "<rootDir>/web/$1"
     },
     "moduleFileExtensions": [
       "ts",
@@ -171,7 +168,7 @@
     ]
   },
   "_moduleAliases": {
-    "@ilion/models": "dist/shared/models",
-    "@ilion/shared": "dist/shared"
+    "@ilium/models": "dist/shared/models",
+    "@ilium/shared": "dist/shared"
   }
 }

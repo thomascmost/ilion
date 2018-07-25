@@ -15,13 +15,13 @@
         "moduleResolution": "node",
         "baseUrl": ".",
         "paths": {
-          "@ilion/effects/*":  ["shared/client/effects/*"],
-          "@ilion/stores/*":   ["shared/client/stores/*"],
-          "@ilion/models/*":   ["shared/models/*"],
-          "@ilion/mocks/*":    ["shared/test/*"],
-          "@ilion/services/*": ["shared/services/*"],
-          "@ilion/shared/*":   ["shared/*"],
-          "@ilion/env/*": ["web/*"]
+          "@ilium/effects/*":  ["shared/client/effects/*"],
+          "@ilium/stores/*":   ["shared/client/stores/*"],
+          "@ilium/models/*":   ["shared/models/*"],
+          "@ilium/mocks/*":    ["shared/test/*"],
+          "@ilium/services/*": ["shared/services/*"],
+          "@ilium/shared/*":   ["shared/*"],
+          "@ilium/env/*": ["web/*"]
         }
     },
     "include": [
