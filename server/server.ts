@@ -45,8 +45,8 @@ const exphbs  = require("express-handlebars");
 // force https
 const sslRedirect = require("heroku-ssl-redirect");
 
-// import * as db from "./abstraction/db.access";
-// db.checkDatabaseVersion();
+import * as db from "./abstraction/db.access";
+db.checkDatabaseVersion();
 
 // import { dataSafety } from "./data-safety.middleware";
 
@@ -55,27 +55,6 @@ var app = express();
 if (process.env.NODE_ENV === "production") {
   app.use(sslRedirect());
 }
-
-import metaRouter from "./meta.router";
-
-app.use(function(req: express.Request, res: express.Response, next: express.NextFunction)
-   {
-   var ua: string = req.header("user-agent");
-   if (/^(facebookexternalhit)|(Twitterbot)|(Googlebot)|(Pinterest)|(visionutils)|(LinkedInBot)/gi.test(ua)) {
-
-      console.log(ua, " is a bot");
-      app.engine("handlebars", exphbs({
-         defaultLayout: "bot",
-         layoutsDir: "./public" }
-      ));
-      app.set("view engine", "handlebars");
-      app.set("views", "./public");
-      metaRouter(req, res, next);
-   }
-   else {
-      next();
-   }
-});
 
 //configure Passport
 import passportConfig from "./abstraction/passport.abst";

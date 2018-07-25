@@ -1,4 +1,4 @@
--- YollerDB
+-- IliumDb
 --
 -- WARNING: Running this MySQL file will erase your current schema (if it exists) and all the data inside it!
 -- Please only use this script to create a new, empty database. Database updates will be applied
@@ -9,8 +9,6 @@ DROP SCHEMA IF EXISTS `iliumdb`;
 CREATE DATABASE `iliumdb`;
 
 USE `iliumdb`;
-
--- 0.4.0
 
 DROP TABLE IF EXISTS `db_info`;
 
@@ -36,7 +34,7 @@ CREATE TABLE `user` (
    `verified` tinyint(1) NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX (`handle`),
-	UNIQUE INDEX (`email`),
+	UNIQUE INDEX (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `user_login`;

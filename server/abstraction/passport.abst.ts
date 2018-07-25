@@ -10,11 +10,9 @@ const extractJWT = passportJWT.ExtractJwt;
 // var Token = require('@ilium/models/Token')
 // var Utility = require('./Utilities')
 
-import { ILoginResult, UserAbst } from "./user.abst";
-import { User } from "@ilium/models/user.model";
+import { IUser } from "../../shared/interfaces/user";
 import * as passport from "passport";
 
-import Token from "../abstraction/token.abst";
 import Env from "../env";
 
 const JWT_SECRET = Env.JWT_SECRET;
@@ -25,26 +23,26 @@ export default function(passport: passport.Passport) {
    passport.use("local", new LocalStrategy(
    function(username: string, password: string, done: any)
    {
-      UserAbst.login(username, password)
-      .then(function (result: ILoginResult) {
-         if (!result.success) ///Log in failed for some reason.
-         {
-            switch (result.reason)
-            {
-               case "incorrect":
-               return done(null, false, { reason: result.reason, message: "Incorrect username or password." });
-               case "unconfirmed":
-               return done(null, false, { reason: result.reason, message: "Email unconfirmed. Be sure to check your spam." });
-            }
-         }
-         else
-         {
-            return done(null, result.user);
-         }
-      })
-      .fail( (err) => {
-        return done(err);
-      });
+      // UserAbst.login(username, password)
+      // .then(function (result: ILoginResult) {
+      //    if (!result.success) ///Log in failed for some reason.
+      //    {
+      //       switch (result.reason)
+      //       {
+      //          case "incorrect":
+      //          return done(null, false, { reason: result.reason, message: "Incorrect username or password." });
+      //          case "unconfirmed":
+      //          return done(null, false, { reason: result.reason, message: "Email unconfirmed. Be sure to check your spam." });
+      //       }
+      //    }
+      //    else
+      //    {
+      //       return done(null, result.user);
+      //    }
+      // })
+      // .fail( (err) => {
+      //   return done(err);
+      // });
    }));
 
    // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +59,7 @@ export default function(passport: passport.Passport) {
          jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
          secretOrKey   : JWT_SECRET
       },
-      (jwtPayload: User, done: (err: any, user?: User) => any) => {
+      (jwtPayload: IUser, done: (err: any, user?: IUser) => any) => {
          return done(null, jwtPayload);
       }
    ));

@@ -5,16 +5,15 @@
 import * as express from "express";
 let router = express.Router();
 
-import { User } from "@ilium/models/user.model";
 import { isAuthenticated, sendUserTokenPackage } from "./auth-middleware";
-import { UserAbst } from "../abstraction/user.abst";
+import { IUser } from "shared/interfaces/user";
 
 //Router is namespaced in server.js to /api/sessions
 export default function (passport: any) {
 
    //receives cookie, returns user object in session or null
    router.get("/user", function (req: express.Request, res: express.Response, next: express.NextFunction) {
-      passport.authenticate("jwt", {session: false}, function(err: any, user: User, info: any) {
+      passport.authenticate("jwt", {session: false}, function(err: any, user: IUser, info: any) {
         if (err) { return next(err); }
         if (!user) { return res.send({}); }
         return res.send(user);
@@ -22,10 +21,10 @@ export default function (passport: any) {
    });
 
    router.get("/reset", isAuthenticated, function (req: express.Request, res: express.Response, next: express.NextFunction) {
-      UserAbst.getByID(req.user.id)
-      .then(user => {
-         return sendUserTokenPackage(res, user);
-      });
+      // UserAbst.getByID(req.user.id)
+      // .then(user => {
+      //    return sendUserTokenPackage(res, user);
+      // });
    });
 
    //Invokes authentication within the route hain
@@ -37,7 +36,7 @@ export default function (passport: any) {
    //The point of all this is that we are able to return a failure message specific to the circumstances of failure,
    //Rather than just a 401
    router.post("/login", function (req: express.Request, res: express.Response, next: express.NextFunction) {
-      passport.authenticate("local", {session: false}, (err: any, user: User, info: {reason: string, message: string}) =>
+      passport.authenticate("local", {session: false}, (err: any, user: IUser, info: {reason: string, message: string}) =>
       {
          if (err) { return next(err); }
          if (!user)
