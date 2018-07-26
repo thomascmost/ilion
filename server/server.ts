@@ -48,6 +48,12 @@ const sslRedirect = require("heroku-ssl-redirect");
 import * as db from "./abstraction/db.access";
 db.checkDatabaseVersion();
 
+import CharacterSvc from "./services/character.svc";
+import { container } from "./container";
+
+let dep = container.resolve<CharacterSvc>('depService')
+dep.create("joe");
+
 // import { dataSafety } from "./data-safety.middleware";
 
 //Initializes the Express application

@@ -6,9 +6,12 @@ import { container } from "../container";
 
 
 @Table
-export class User extends Model<User> {
+export class Character extends Model<Character> {
 
    @Column
    name: string;
+
+   @Column
+   gender: string;
 
 }
