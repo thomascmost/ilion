@@ -1,20 +1,21 @@
 //db.ts
 
 // tslint:disable-next-line:variable-name
-import * as Sequelize from "sequelize";
+import { Sequelize } from "sequelize-typescript";
 import Env from "../env";
-const sequelize = new Sequelize(Env.MYSQL_DB, Env.MYSQL_USER, Env.MYSQL_PASS, {
-  host: Env.MYSQL_HOST,
-  dialect: "mysql",
-  operatorsAliases: false,
-
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-
+const sequelize = new Sequelize({
+   database: Env.MYSQL_DB,
+   username: Env.MYSQL_USER,
+   password: Env.MYSQL_PASS,
+   host: Env.MYSQL_HOST,
+   dialect: "mysql",
+   modelPaths: [__dirname + "/../models"],
+   pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+   }
 });
 
 // Use this class to construct a general query object. The format is:
@@ -109,7 +110,7 @@ function updateDatabase(fwVersion: string)
    {
       "version" : "0.0.2",
       "queries" : [
-      `CREATE TABLE role (
+      `CREATE TABLE \`character\` (
          id int(10) unsigned NOT NULL AUTO_INCREMENT,
          name varchar(255) NOT NULL,
          PRIMARY KEY (id)

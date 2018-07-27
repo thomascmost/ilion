@@ -1,5 +1,12 @@
 {
     "extends": "../tsconfig",
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es6",
+        "module": "commonjs",
+        "lib": [ "es2015", "dom" ],
+    },
     "include": [
         "./server.ts"
     ]

@@ -51,8 +51,8 @@ db.checkDatabaseVersion();
 import CharacterSvc from "./services/character.svc";
 import { container } from "./container";
 
-let dep = container.resolve<CharacterSvc>('depService')
-dep.create("joe");
+let dep = container.resolve<CharacterSvc>("characterSvc");
+dep.create("Hercules");
 
 // import { dataSafety } from "./data-safety.middleware";
 
