@@ -1,22 +1,14 @@
-
-console.log("Bundling Successful")
-
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-//import { Themiscyra } from "./reducers";
-
-//import "./client/sass/index.scss";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { routerReducer, routerMiddleware } from "react-router-redux";
+import createHistory from "history/createBrowserHistory";
 
 import { App } from "./modules/app/app";
 
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from "react-router-redux";
-
-import createHistory from "history/createBrowserHistory"
-
 // Polyfills
-var Promise = require( "promise-polyfill" ); 
+var Promise = require( "promise-polyfill" );
 
 // To add to window
 if (!(window as any).Promise) {
@@ -36,11 +28,12 @@ const store = createStore(
 export abstract class WebApp {
    public static initialize ()
    {
+      console.log("rendering app");
       ReactDOM.render(
-          <Provider store={store}>
-              <App history={history} />
-          </Provider>,
-          document.getElementById("app")
+         <Provider store={store}>
+            <App history={history} />
+         </Provider>,
+         document.getElementById("app")
       );
    }
 }

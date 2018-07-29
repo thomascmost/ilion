@@ -1,8 +1,7 @@
 import * as React from "react";
 
-interface IHomeProps {}
-
-export const Home: React.SFC<IHomeProps> = () => {
+export const Home = () => {
       return <div>
-      </div>
+         Welcome.
+      </div>;
    }

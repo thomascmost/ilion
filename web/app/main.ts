@@ -1,6 +1,6 @@
 require("./sass/index");
 
-console.log("Bundling Successful")
+console.log("initializing");
 
 import { WebApp } from "./web";
 
