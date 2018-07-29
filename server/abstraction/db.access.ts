@@ -116,6 +116,12 @@ function updateDatabase(fwVersion: string)
          PRIMARY KEY (id)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`
       ]
+   },
+   {
+      "version" : "0.0.3",
+      "queries" : [
+      `ALTER TABLE \`character\` ADD COLUMN gender varchar(255) NULL`
+      ]
    }
   ];
 

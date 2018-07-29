@@ -3,6 +3,8 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { routerReducer, routerMiddleware } from "react-router-redux";
+import { createForms } from "react-redux-form";
+
 import createHistory from "history/createBrowserHistory";
 
 import { App } from "./modules/app/app";
@@ -18,11 +20,14 @@ if (!(window as any).Promise) {
 const history = createHistory()
 const middleware = routerMiddleware(history)
 const store = createStore(
-  combineReducers({
-    //...Themiscyra,
-    router: routerReducer
-  }),
-  applyMiddleware(middleware)
+   combineReducers({
+      //...Themiscyra,
+      router: routerReducer,
+      ...createForms({
+         character: {name: ""},
+      }),
+   }),
+   applyMiddleware(middleware)
 );
 
 export abstract class WebApp {

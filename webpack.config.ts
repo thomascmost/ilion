@@ -98,9 +98,9 @@ module.exports = function(env: {production: boolean}) {
         // browse to http://localhost:3000/ during development, 
         // ./public directory is being served 
         host: "localhost",
-        port: 5000,
-        server: { baseDir: ["public"] }
-      }))
+        port: 3000,
+        proxy: "http://localhost:9657/"
+      }));
    return productionConfig;
   }
   else {
