@@ -10,7 +10,7 @@
   "scripts": {
     "postinstall": "npm run build",
     "clean": "rm -rf ./dist && rm -rf ./public",
-    "build": "tsc -p ./server && gulp pre-process && webpack --env.production --mode production",
+    "build": "tsc -p ./server && webpack --env.production --mode production",
     "go": "concurrently \"webpack --watch\" \"npm run start\"",
     "start": "node ./dist/server/server.js",
     "tsc": "tsc",
