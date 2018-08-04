@@ -9,4 +9,7 @@ export default class Character extends Model<Character> {
    @Column
    gender: string;
 
+   @Column
+   project_id: number;
+
 }

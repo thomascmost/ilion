@@ -122,6 +122,19 @@ function updateDatabase(fwVersion: string)
       "queries" : [
       `ALTER TABLE \`character\` ADD COLUMN gender varchar(255) NULL`
       ]
+   },
+   {
+      "version" : "0.0.4",
+      "queries" : [
+        `CREATE TABLE project (
+         id int(10) unsigned NOT NULL AUTO_INCREMENT,
+         name varchar(255) NOT NULL,
+         PRIMARY KEY (id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
+      `ALTER TABLE \`character\` ADD COLUMN project_id int(10) unsigned NOT NULL;`,
+      `ALTER TABLE \`character\` ADD FOREIGN KEY(project_id) REFERENCES project(id);`,
+      `INSERT INTO project (name) VALUES ('Three Sisters');`
+      ]
    }
   ];
 

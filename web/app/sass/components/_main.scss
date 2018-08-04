@@ -44,7 +44,7 @@ html {
             display: block;
             border-bottom: 2px solid black;
             height: 50px;
-            background-color: #404E5C;
+            background-color: white; // #404E5C;
             div:first-child {
                margin-left: 0;
                * {
@@ -70,8 +70,8 @@ html {
          }
          .app-body {
             margin: 0 50px;
-            border-left: 2px solid black;
-            border-right: 2px solid black;
+            // border-left: 2px solid black;
+            // border-right: 2px solid black;
             padding: 40px;
             background-color: #a7b4c1;
             height: 100%; //calc(100% - 50px);

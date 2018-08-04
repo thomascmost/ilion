@@ -14,6 +14,7 @@ export default function (router: express.Router) {
 
    router.post("/add", function (req: express.Request, res: express.Response, next: express.NextFunction) {
       let character = req.body;
+      character.project_id = 1;
       Character.create(character)
       .then(function () {
          res.sendStatus(200);
