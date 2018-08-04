@@ -35,8 +35,6 @@ var productionConfig = {
    mode: "production",
    devtool: "source-map",
    plugins: [
-      new WebpackBar(),
-      webpackBuildLogger,
       new webpack.DefinePlugin({
          "process.env": {
          ENV: JSON.stringify(ENV)
@@ -93,7 +91,9 @@ var productionConfig = {
 module.exports = function(env: {production: boolean}) {
   if (!env || !env.production) {
    productionConfig.mode = "development";
-   productionConfig.plugins.push(
+   productionConfig.plugins = productionConfig.plugins.concat(
+      new WebpackBar(),
+      webpackBuildLogger,
       new BrowserSyncPlugin({
         // browse to http://localhost:3000/ during development, 
         // ./public directory is being served 
