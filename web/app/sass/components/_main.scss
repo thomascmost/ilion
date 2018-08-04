@@ -35,19 +35,21 @@ html {
          margin: auto;
          margin-bottom: 1.6em;
          z-index: 1;
-
+         .application-wrapper {
+            height: calc(100% - 140px);
+         }
          .header {
             @include grid-container();
             width: 100%;
             display: block;
             border-bottom: 2px solid black;
             height: 50px;
+            background-color: #404E5C;
             div:first-child {
                margin-left: 0;
                * {
                   margin-left: 0;
                }
-               display: inline-block;
                width: 50px;
                float: left;
             }
@@ -65,6 +67,14 @@ html {
                line-height: 50px;
                float: left;
             }
+         }
+         .app-body {
+            margin: 0 50px;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            padding: 40px;
+            background-color: #a7b4c1;
+            height: 100%; //calc(100% - 50px);
          }
 
          }

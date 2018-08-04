@@ -1,13 +1,15 @@
 import * as React from "react";
 import { Control, Form } from "react-redux-form";
+import { connect } from "react-redux";
+import { getCharacterList } from "./character.actions";
 
 interface ICharacterListProps {
-   characters: any[];
+   list: any[];
 }
 
 const CharacterList = (props: ICharacterListProps) =>
 {
-   var characters = props.characters.map( (character: any) => {
+   var characters = props.list.map( (character: any) => {
          return (
             <div>
                {character.name}
@@ -21,4 +23,17 @@ const CharacterList = (props: ICharacterListProps) =>
    );
 };
 
-export default CharacterList;
+///////////////////////////////////
+//      Container Component
+///////////////////////////////////
+
+const mapDispatchToProps = () => {};
+
+const mapStateToProps = (state: any) => {
+  return {...state.characters };
+}
+
+export const CharacterListContainer: React.ComponentClass<{}> = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CharacterList);

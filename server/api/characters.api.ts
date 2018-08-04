@@ -14,7 +14,10 @@ export default function (router: express.Router) {
 
    router.post("/add", function (req: express.Request, res: express.Response, next: express.NextFunction) {
       let character = req.body;
-      Character.create(character);
+      Character.create(character)
+      .then(function () {
+         res.sendStatus(200);
+      });
    });
 
    return router;

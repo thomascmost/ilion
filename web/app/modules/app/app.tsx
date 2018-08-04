@@ -15,7 +15,9 @@ export const App = (props: IAppProps) => {
                         <ReactSVG path="ilium.svg" />
                         <h1>Ilium</h1>
                      </div>
-                     <Route exact path="/" component={Home} />
+                     <div className="app-body">
+                        <Route exact path="/" component={Home} />
+                     </div>
                   </div>
                </ConnectedRouter>;
     }

@@ -7,7 +7,14 @@ import { createForms } from "react-redux-form";
 
 import createHistory from "history/createBrowserHistory";
 
+import iliumReducer from "./reducer";
+
+import createSagaMiddleware from "redux-saga";
+import characterSaga from "./modules/character/character.saga";
+const sagaMiddleware = createSagaMiddleware()
+
 import { App } from "./modules/app/app";
+import { getCharacterList } from "./modules/character/character.actions";
 
 // Polyfills
 var Promise = require( "promise-polyfill" );
@@ -21,18 +28,21 @@ const history = createHistory()
 const middleware = routerMiddleware(history)
 const store = createStore(
    combineReducers({
-      //...Themiscyra,
       router: routerReducer,
+      ...iliumReducer,
       ...createForms({
          character: {name: ""},
       }),
    }),
-   applyMiddleware(middleware)
+   applyMiddleware(middleware, sagaMiddleware)
 );
+// then run the saga
+sagaMiddleware.run(characterSaga);
 
 export abstract class WebApp {
    public static initialize ()
    {
+      store.dispatch(getCharacterList());
       console.log("rendering app");
       ReactDOM.render(
          <Provider store={store}>

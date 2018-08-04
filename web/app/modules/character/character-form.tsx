@@ -1,7 +1,13 @@
 import * as React from "react";
 import { Control, Form } from "react-redux-form";
+import { connect } from "react-redux";
+import { getCharacterList } from "./character.actions";
 
-export default class CharacterForm extends React.Component {
+interface ICharacterFormProps {
+   onSubmit: () => void;
+}
+
+class CharacterForm extends React.Component<ICharacterFormProps> {
   handleSubmit(val: any) {
     // Do anything you want with the form value
     console.log(val);
@@ -13,6 +19,9 @@ export default class CharacterForm extends React.Component {
       },
       body: JSON.stringify(val)
     })
+    .then( () => {
+      this.props.onSubmit();
+    });
   }
 
   render() {
@@ -25,3 +34,24 @@ export default class CharacterForm extends React.Component {
     );
   }
 }
+
+
+///////////////////////////////////
+//      Container Component
+///////////////////////////////////
+
+const mapStateToProps = (state: any) => {};
+
+
+const mapDispatchToProps = (dispatch: any) => {
+   return {
+      onSubmit: () => {
+         dispatch(getCharacterList());
+      },
+   };
+};
+
+export const CharacterFormContainer: React.ComponentClass<{}> = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CharacterForm);
