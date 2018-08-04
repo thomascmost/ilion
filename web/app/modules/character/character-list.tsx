@@ -7,7 +7,7 @@ interface ICharacterListProps {
 
 const CharacterList = (props: ICharacterListProps) =>
 {
-   var characters = this.props.characters.map( (character: any) => {
+   var characters = props.characters.map( (character: any) => {
          return (
             <div>
                {character.name}
