@@ -1,23 +1,30 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import ReactSVG from "react-svg";
 import { Route } from "react-router";
-import { ConnectedRouter } from "react-router-redux";
+import { ConnectedRouter } from "connected-react-router";
 
 import { Home } from "./home";
+import { Timeline } from "../timeline/timeline";
 
 export interface IAppProps { history: any; }
 
 export const App = (props: IAppProps) => {
         return <ConnectedRouter history={props.history}>
+                  <Router history={props.history}>
                   <div className="application-wrapper">
                      <div className="header">
-                        <ReactSVG path="ilium.svg" />
-                        <h1>Ilium</h1>
+                        <Link to="/" >
+                           <ReactSVG path="ilium.svg" />
+                           <h1>Ilium</h1>
+                        </Link>
+                        <Link to="/timeline" >Timeline</Link>
                      </div>
                      <div className="app-body">
                         <Route exact path="/" component={Home} />
+                        <Route exact path="/timeline" component={Timeline} />
                      </div>
                   </div>
+                  </Router>
                </ConnectedRouter>;
     }

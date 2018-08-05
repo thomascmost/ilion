@@ -14,8 +14,8 @@ export default class Scene extends Model<Scene> {
    @Column
    endPoint: number;
 
-   // 0 being the top
-   @Column
-   gridDepth: number;
+   // // 0 being the top
+   // @Column
+   // gridDepth: number;
 
 }

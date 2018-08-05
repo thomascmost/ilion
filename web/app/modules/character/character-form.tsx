@@ -40,7 +40,9 @@ class CharacterForm extends React.Component<ICharacterFormProps> {
 //      Container Component
 ///////////////////////////////////
 
-const mapStateToProps = (state: any) => {};
+const mapStateToProps = () => {
+   return {};
+};
 
 
 const mapDispatchToProps = (dispatch: any) => {

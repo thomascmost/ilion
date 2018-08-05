@@ -27,7 +27,7 @@ var productionConfig = {
       alias: {
          moment: "moment/moment.js"
       },
-      extensions: [".scss", ".ts", ".tsx", ".js"],
+      extensions: [".scss", ".css", ".ts", ".tsx", ".js"],
       plugins: [
          new TsConfigPathsPlugin()
       ]
@@ -72,7 +72,7 @@ var productionConfig = {
             loader: "ts-loader"
          },
          {
-            test: /\.scss$/,
+            test: /\.(scss|css)$/,
             loader: ExtractTextPlugin.extract({
                   use: [{
                       loader: "css-loader"

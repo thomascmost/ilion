@@ -11,7 +11,7 @@ const CharacterList = (props: ICharacterListProps) =>
 {
    var characters = props.list.map( (character: any) => {
          return (
-            <div>
+            <div key={character.id}>
                {character.name}
             </div>
       );
@@ -27,7 +27,9 @@ const CharacterList = (props: ICharacterListProps) =>
 //      Container Component
 ///////////////////////////////////
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = () => {
+   return {};
+};
 
 const mapStateToProps = (state: any) => {
   return {...state.characters };

@@ -135,6 +135,19 @@ function updateDatabase(fwVersion: string)
       `ALTER TABLE \`character\` ADD FOREIGN KEY(project_id) REFERENCES project(id);`,
       `INSERT INTO project (name) VALUES ('Three Sisters');`
       ]
+   },
+   {
+      "version" : "0.0.5",
+      "queries" : [
+        `CREATE TABLE scene (
+         id int(10) unsigned NOT NULL AUTO_INCREMENT,
+         name varchar(255) NULL,
+         startPoint BIGINT UNSIGNED NOT NULL DEFAULT 0,
+         endPoint BIGINT UNSIGNED NOT NULL DEFAULT 600000,
+         PRIMARY KEY (id),
+         FOREIGN KEY(project_id) REFERENCES project(id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`
+      ]
    }
   ];
 

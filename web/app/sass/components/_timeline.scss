@@ -1,0 +1,12 @@
+
+.react-grid-layout {
+   border: 1px solid black;
+   border-radius: 3px;
+   .react-grid-item {
+      border: 1px solid black;
+      border-radius: 3px;
+      background-color: white;
+      padding: 10px;
+      box-sizing: border-box;
+   }
+}

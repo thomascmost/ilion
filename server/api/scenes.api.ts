@@ -1,21 +1,21 @@
 import * as express from "express";
-import Character from "../models/character.model";
+import Scene from "../models/scene.model";
 
 //Router is namespaced in server.js to /api/sessions
 export default function (router: express.Router) {
 
    router.get("/list", function (req: express.Request, res: express.Response, next: express.NextFunction) {
-      Character.findAll()
-      .then( (characters) =>
+      Scene.findAll()
+      .then( (scenes) =>
       {
-         res.send(characters);
+         res.send(scenes);
       });
    });
 
    router.post("/add", function (req: express.Request, res: express.Response, next: express.NextFunction) {
-      let character = req.body;
-      character.project_id = 1;
-      Character.create(character)
+      let scene = req.body;
+      scene.project_id = 1;
+      Scene.create(scene)
       .then(function () {
          res.sendStatus(200);
       });

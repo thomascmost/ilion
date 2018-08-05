@@ -2,15 +2,18 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { routerReducer, routerMiddleware } from "react-router-redux";
+
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+
 import { createForms } from "react-redux-form";
 
-import createHistory from "history/createBrowserHistory";
+import { createBrowserHistory } from 'history'
 
 import iliumReducer from "./reducer";
 
 import createSagaMiddleware from "redux-saga";
 import characterSaga from "./modules/character/character.saga";
+import sceneSaga from "./modules/scene/scene.saga";
 const sagaMiddleware = createSagaMiddleware()
 
 import { App } from "./modules/app/app";
@@ -24,20 +27,21 @@ if (!(window as any).Promise) {
  (window as any).Promise = Promise;
 }
 
-const history = createHistory()
+const history = createBrowserHistory();
 const middleware = routerMiddleware(history)
 const store = createStore(
-   combineReducers({
-      router: routerReducer,
+   connectRouter(history)(
+      combineReducers({
       ...iliumReducer,
       ...createForms({
          character: {name: ""},
       }),
-   }),
+   })),
    applyMiddleware(middleware, sagaMiddleware)
 );
 // then run the saga
 sagaMiddleware.run(characterSaga);
+sagaMiddleware.run(sceneSaga);
 
 export abstract class WebApp {
    public static initialize ()
