@@ -19,6 +19,7 @@
     "test-watch": "jest --watch"
   },
   "dependencies": {
+    "@types/react-sidebar": "^3.0.0",
     "awilix": "^3.0.9",
     "aws-sdk": "^2.259.1",
     "body-parser": "^1.18.3",
@@ -59,6 +60,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
+    "react-sidebar": "^3.0.2",
     "redux": "^4.0.0",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.2.1",
