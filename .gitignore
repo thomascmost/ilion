@@ -1,4 +1,5 @@
 .env
 **/*.js
 **/*.js.map
+public/**/*
 node_modules/**/*

@@ -1,10 +1,23 @@
 const ENV = process.env.NODE_ENV = process.env.ENV = "production";
 
 var path = require("path");
+var BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
+const WebpackBar = require("webpackbar");
+var WebpackBuildLogger = require("webpack-build-logger");
 var TsConfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+var bourbon = require("bourbon").includePaths;
+var neat = require("bourbon-neat").includePaths;
+var stylepaths = bourbon.concat(neat);
+
+let webpackBuildLogger = new WebpackBuildLogger({
+   logEnabled: true, // false - default 
+   // logger: (counter, time, scripts, warnings) => { // by default - console.log will be used
+   //   customLogger(counter, time, scripts, warnings)
+   // }
+ });
 
 import * as webpack from "webpack";
 
@@ -14,12 +27,13 @@ var productionConfig = {
       alias: {
          moment: "moment/moment.js"
       },
-      extensions: [".scss", ".ts", ".js"],
+      extensions: [".scss", ".css", ".ts", ".tsx", ".js"],
       plugins: [
          new TsConfigPathsPlugin()
       ]
    },
-
+   mode: "production",
+   devtool: "source-map",
    plugins: [
       new webpack.DefinePlugin({
          "process.env": {
@@ -44,7 +58,7 @@ var productionConfig = {
 
    entry: [
             "./web/polyfills.ts",
-            "./web/ProdBuild/main.ts"
+            "./web/app/main.ts"
          ],
    output: {
       path: path.resolve(__dirname + "/public/"),
@@ -53,16 +67,22 @@ var productionConfig = {
    module: {
       rules: [
          {
-         test: /\.ts$/,
-         exclude: /node_modules/,
-         loader: "awesome-typescript-loader"
+            test: /\.(ts|tsx)?$/, 			
+            exclude: /node_modules/,
+            loader: "ts-loader"
          },
          {
-         test: /\.scss$/,
-         loader: ExtractTextPlugin.extract({
-               fallback: "style-loader", // The backup style loader
-               use: ["css-loader?url=false", "sass-loader?url=false"]
-            })
+            test: /\.(scss|css)$/,
+            loader: ExtractTextPlugin.extract({
+                  use: [{
+                      loader: "css-loader"
+                  }, {
+                      loader: "sass-loader",
+                      options: {
+                          includePaths: stylepaths
+                      }
+                  }]
+                })
          }
       ]
    }
@@ -70,13 +90,22 @@ var productionConfig = {
 
 module.exports = function(env: {production: boolean}) {
   if (!env || !env.production) {
-    console.log("-- Important --");
-    console.log("Please use Gulp for development.");
-    console.log("Exiting process...");
-    process.exit(-1);
+   productionConfig.mode = "development";
+   productionConfig.plugins = productionConfig.plugins.concat(
+      new WebpackBar(),
+      webpackBuildLogger,
+      new BrowserSyncPlugin({
+        // browse to http://localhost:3000/ during development, 
+        // ./public directory is being served 
+        host: "localhost",
+        port: 3000,
+        proxy: "http://localhost:9657/"
+      }));
+   return productionConfig;
   }
   else {
     console.log("Running webpack for production");
+    productionConfig.mode = "production";
     return productionConfig;
   }
 };

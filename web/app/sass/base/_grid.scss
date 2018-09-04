@@ -1,0 +1,28 @@
+$base-width: 0;
+$phone-width: 468px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+$base-grid: (
+   columns: 12,
+   gutter: 0px,
+   media: 0px,
+ );
+ 
+ $phone-grid: (
+   columns: 12,
+   gutter: 0px,
+   media: $phone-width,
+ );
+ 
+ $tablet-grid: (
+   columns: 12,
+   gutter: 0px,
+   media: $tablet-width,
+ );
+ 
+ $desktop-grid: (
+   columns: 12,
+   gutter: 0px,
+   media: $desktop-width,
+ );

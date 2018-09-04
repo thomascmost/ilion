@@ -23,6 +23,7 @@ require("module-alias/register");
 
 // Import Express
 import * as express from "express";
+let router = express.Router();
 
 // Import and add our globals
 // import addGlobals from "./globals";
@@ -47,12 +48,6 @@ const sslRedirect = require("heroku-ssl-redirect");
 
 import * as db from "./abstraction/db.access";
 db.checkDatabaseVersion();
-
-import CharacterSvc from "./services/character.svc";
-import { container } from "./container";
-
-let dep = container.resolve<CharacterSvc>("characterSvc");
-dep.create("Hercules");
 
 // import { dataSafety } from "./data-safety.middleware";
 
@@ -88,10 +83,14 @@ app.use(domainMiddleware);
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 //requiring sessions as a function so that we can pass the passport object as a param
+import apiCharacters from "./api/characters.api";
+import apiScenes from "./api/scenes.api";
 // import apiAuth from "./api/auth.api";
 // import apiSessions from "./api/sessions.api";
 // import apiUsers from "./api/users.api";
 
+app.use("/api/characters", apiCharacters(router));
+app.use("/api/scenes", apiScenes(router));
 // app.use("/api/auth",          apiAuth());
 // app.use("/api/sessions",      apiSessions(passport)); //and namespacing the route as normal after the modified require line.
 // app.use("/api/users",         apiUsers());

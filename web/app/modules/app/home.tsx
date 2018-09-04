@@ -1,8 +1,11 @@
 import * as React from "react";
+import { CharacterFormContainer } from "../character/character-form";
+import { CharacterListContainer } from "../character/character-list";
 
-interface IHomeProps {}
-
-export const Home: React.SFC<IHomeProps> = () => {
+export const Home = () => {
       return <div>
-      </div>
+         <h3>Three Sisters</h3>
+         <CharacterFormContainer />
+         <CharacterListContainer />
+      </div>;
    }

@@ -1,38 +1,30 @@
 import * as React from "react";
-import {
-   BrowserRouter as Router,
-   Link,
-   match,
-   Redirect
- } from "react-router-dom";
-
+import { Link, Router } from "react-router-dom";
+import ReactSVG from "react-svg";
 import { Route } from "react-router";
-
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from "react-router-redux";
-
-//import SVGInline from "react-svg-inline"
-//const iconSVG = require("../static/img/logo.svg") as string;
-//import * as iconSVG from "../static/img/logo.svg";
-
+import { ConnectedRouter } from "connected-react-router";
 
 import { Home } from "./home";
+import { Timeline } from "../timeline/timeline";
 
 export interface IAppProps { history: any; }
 
-export const App: React.SFC<IAppProps> = (props) => {
+export const App = (props: IAppProps) => {
         return <ConnectedRouter history={props.history}>
+                  <Router history={props.history}>
                   <div className="application-wrapper">
                      <div className="header">
-                        <Link to="/">
-                           <h1>August</h1>
+                        <Link to="/" >
+                           <ReactSVG path="ilium.svg" />
+                           <h1>Ilium</h1>
                         </Link>
-                        <nav>
-                           <Link to="/projects">
-                              Projects
-                           </Link>
-                        </nav>
+                        <Link to="/timeline" >Timeline</Link>
                      </div>
-                           <Route exact path="/" component={Home} />
+                     <div className="app-body">
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/timeline" component={Timeline} />
+                     </div>
                   </div>
-               </ConnectedRouter>
+                  </Router>
+               </ConnectedRouter>;
     }
