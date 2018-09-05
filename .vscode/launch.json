@@ -12,6 +12,12 @@
       },
       {
          "type": "node",
+         "request": "attach",
+         "name": "Attach to Ilion Web",
+         "processId": "21795"
+      },
+      {
+         "type": "node",
          "request": "launch",
          "name": "Launch Program",
          "program": "${workspaceFolder}\\main.js",

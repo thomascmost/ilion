@@ -26,11 +26,14 @@ class CharacterForm extends React.Component<ICharacterFormProps> {
 
   render() {
     return (
-      <Form model="character" onSubmit={(val) => this.handleSubmit(val)}>
-        <label>Character Name</label>
-        <Control.text model=".name" />
-        <button>Submit!</button>
-      </Form>
+      <div>
+         <label>Quick Add</label>
+         <Form model="character" onSubmit={(val) => this.handleSubmit(val)}>
+            <label className="prompt">Character Name</label>
+            <Control.text model=".name" />
+            <button>Submit!</button>
+         </Form>
+      </div>
     );
   }
 }

@@ -1,0 +1,13 @@
+:local(.container) {
+   border-radius: 3px;
+   border: 1px solid gray;
+   height: 200px;
+   width: 150px;
+   display: inline-block;
+   margin-right: 20px;
+   margin-bottom: 20px;
+   padding: 20px;
+   label {
+      font-weight: 700;
+   }
+}

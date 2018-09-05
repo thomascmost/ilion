@@ -2,6 +2,7 @@ import * as React from "react";
 import { Control, Form } from "react-redux-form";
 import { connect } from "react-redux";
 import { getCharacterList } from "./character.actions";
+import { CharacterCard } from "./character-card";
 
 interface ICharacterListProps {
    list: any[];
@@ -11,9 +12,10 @@ const CharacterList = (props: ICharacterListProps) =>
 {
    var characters = props.list.map( (character: any) => {
          return (
-            <div key={character.id}>
-               {character.name}
-            </div>
+            <CharacterCard
+               key={character.id}
+               character={character}>
+            </CharacterCard>
       );
    });
    return (

@@ -124,7 +124,7 @@ function updateDatabase(fwVersion: string)
       ]
    },
    {
-      "version" : "0.0.4",
+      "version" : "0.0.5",
       "queries" : [
         `CREATE TABLE project (
          id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -137,16 +137,34 @@ function updateDatabase(fwVersion: string)
       ]
    },
    {
-      "version" : "0.0.5",
+      "version" : "0.0.7",
       "queries" : [
         `CREATE TABLE scene (
          id int(10) unsigned NOT NULL AUTO_INCREMENT,
+         project_id int(10) unsigned NOT NULL,
          name varchar(255) NULL,
          startPoint BIGINT UNSIGNED NOT NULL DEFAULT 0,
          endPoint BIGINT UNSIGNED NOT NULL DEFAULT 600000,
          PRIMARY KEY (id),
          FOREIGN KEY(project_id) REFERENCES project(id)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`
+      ]
+   },
+   {
+      "version" : "0.0.8",
+      "queries" : [
+        `CREATE TABLE scene_character (
+         id int(10) unsigned NOT NULL AUTO_INCREMENT,
+         character_id int(10) unsigned NOT NULL,
+         scene_id int(10) unsigned NOT NULL,
+         startPoint BIGINT UNSIGNED NULL,
+         endPoint BIGINT UNSIGNED NULL,
+         PRIMARY KEY (id),
+         FOREIGN KEY(character_id) REFERENCES character(id),
+         FOREIGN KEY(scene_id) REFERENCES scene(id)
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
+      `ALTER TABLE \`scene\` ADD COLUMN project_id int(10) unsigned NOT NULL;`,
+      `ALTER TABLE \`scene\` ADD FOREIGN KEY(project_id) REFERENCES project(id);`,
       ]
    }
   ];

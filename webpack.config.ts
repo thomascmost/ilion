@@ -27,7 +27,7 @@ var productionConfig = {
       alias: {
          moment: "moment/moment.js"
       },
-      extensions: [".scss", ".css", ".ts", ".tsx", ".js"],
+      extensions: [".ts", ".tsx", ".scss", ".css", ".js"],
       plugins: [
          new TsConfigPathsPlugin()
       ]

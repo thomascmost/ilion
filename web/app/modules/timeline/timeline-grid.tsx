@@ -11,6 +11,16 @@ interface ITimelineGridProps {
    list: any[];
 }
 
+const createSceneBlock = (id: string, x: number, y: number) => ({
+   i: id,
+   x: x,
+   y: y,
+   w: 1,
+   h: 2,
+   maxW: 1,
+   maxH: 12,
+})
+
 class TimelineGrid extends React.Component<ITimelineGridProps> {
    componentDidMount() {
       this.props.onLoadScenes();
@@ -31,9 +41,10 @@ class TimelineGrid extends React.Component<ITimelineGridProps> {
    render() {
       // layout is an array of objects, see the demo for more complete usage
       var layout = [
-         {i: "a1", x: 0, y: 0, w: 1, h: 2, static: false},
-         {i: "a2", x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-         {i: "b1", x: 4, y: 0, w: 1, h: 2}
+         createSceneBlock('a1', 0, 0),
+         createSceneBlock('a2', 1, 0),
+         createSceneBlock('b1', 0, 2),
+         createSceneBlock('c3', 2, 5),
       ];
       return (
          <GridLayout
@@ -44,6 +55,7 @@ class TimelineGrid extends React.Component<ITimelineGridProps> {
          <div key="a1">Scene A1</div>
          <div key="a2">Scene A2</div>
          <div key="b1">Scene B1</div>
+         <div key="c3">Scene C3</div>
          </GridLayout>
     )
   }
