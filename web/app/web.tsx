@@ -35,6 +35,7 @@ const store = createStore(
       ...iliumReducer,
       ...createForms({
          character: {name: ""},
+         login: { username: "rebis", password: "" }
       }),
    })),
    applyMiddleware(middleware, sagaMiddleware)

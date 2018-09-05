@@ -86,13 +86,13 @@ app.use(domainMiddleware);
 import apiCharacters from "./api/characters.api";
 import apiScenes from "./api/scenes.api";
 // import apiAuth from "./api/auth.api";
-// import apiSessions from "./api/sessions.api";
+import apiSessions from "./api/sessions.api";
 // import apiUsers from "./api/users.api";
 
 app.use("/api/characters", apiCharacters());
 app.use("/api/scenes", apiScenes());
 // app.use("/api/auth",          apiAuth());
-// app.use("/api/sessions",      apiSessions(passport)); //and namespacing the route as normal after the modified require line.
+app.use("/api/sessions",      apiSessions(passport));
 // app.use("/api/users",         apiUsers());
 
 /////////////////////////////////////////////////////////////////////////////////////////////////

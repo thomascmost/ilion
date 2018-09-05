@@ -53,7 +53,7 @@ export default function (passport: any) {
 
      //Calls the Passport logout method to end the user session
    router.get("/logout", function (req: express.Request, res:express.Response, next: express.NextFunction) {
-      res.clearCookie("YOLLERHORN_JWT_TOKEN");
+      res.clearCookie("JWT_TOKEN");
       res.send({});
    });
 

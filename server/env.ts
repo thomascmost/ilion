@@ -24,4 +24,8 @@ export default abstract class Env {
       return process.env.JWT_SECRET;
    }
 
+   static get PASSKEY(): string {
+      return process.env.PASSKEY;
+   }
+
 }

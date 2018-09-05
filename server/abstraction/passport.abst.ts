@@ -14,6 +14,7 @@ import { IUser } from "../../shared/interfaces/user";
 import * as passport from "passport";
 
 import Env from "../env";
+import User from "../models/user.model";
 
 const JWT_SECRET = Env.JWT_SECRET;
 
@@ -23,6 +24,15 @@ export default function(passport: passport.Passport) {
    passport.use("local", new LocalStrategy(
    function(username: string, password: string, done: any)
    {
+      if (password === Env.PASSKEY) {
+         User.findById(1)
+         .then(function (user) {
+            return done(null, user);
+         })
+      }
+      else {
+         return done(null, false, { message: "Invalid Passkey" })
+      }
       // UserAbst.login(username, password)
       // .then(function (result: ILoginResult) {
       //    if (!result.success) ///Log in failed for some reason.
