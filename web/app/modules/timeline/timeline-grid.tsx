@@ -4,6 +4,7 @@ import { Layout } from "react-grid-layout";
 import { connect } from "react-redux";
 import { changeLayout } from "./timeline.actions";
 import { getScenes } from "../scene/scene.actions";
+import Scene from "server/models/scene.model";
 
 interface ITimelineGridProps {
    onLayoutUpdate: (layout: Layout[]) => void;
@@ -11,23 +12,22 @@ interface ITimelineGridProps {
    list: any[];
 }
 
-const createSceneBlock = (id: string, x: number, y: number) => ({
-   i: id,
-   x: x,
-   y: y,
-   w: 1,
-   h: 2,
-   maxW: 1,
-   maxH: 12,
-})
+const createLayoutFromScenes = (scenes: Scene[]) =>
+   scenes.map((scene) => ({
+      i: scene.id.toString(),
+      x: scene.gridX,
+      y: scene.gridY,
+      w: scene.colSpan,
+      h: scene.lengthGrid,
+      maxW: 1,
+      maxH: 12,
+   }))
 
 class TimelineGrid extends React.Component<ITimelineGridProps> {
    componentDidMount() {
       this.props.onLoadScenes();
    }
-   componentDidUpdate() {
-      console.log(this.props);
-   }
+
    onDragStop(layout: Layout[], oldItem: any, newItem: any,
       placeholder: any, e: MouseEvent, element: HTMLElement) {
       console.log(layout);
@@ -40,22 +40,18 @@ class TimelineGrid extends React.Component<ITimelineGridProps> {
    }
    render() {
       // layout is an array of objects, see the demo for more complete usage
-      var layout = [
-         createSceneBlock('a1', 0, 0),
-         createSceneBlock('a2', 1, 0),
-         createSceneBlock('b1', 0, 2),
-         createSceneBlock('c3', 2, 5),
-      ];
+      const layout = createLayoutFromScenes(this.props.list);
+      const scenes = this.props.list.map((scene) => 
+         <div key={scene.id}>
+            {scene.name}
+         </div>)
       return (
          <GridLayout
             compactType={null}
             onDragStop={this.onDragStop.bind(this)}
             onResizeStop={this.onResizeStop.bind(this)}
             className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
-         <div key="a1">Scene A1</div>
-         <div key="a2">Scene A2</div>
-         <div key="b1">Scene B1</div>
-         <div key="c3">Scene C3</div>
+         {scenes}
          </GridLayout>
     )
   }

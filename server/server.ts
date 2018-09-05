@@ -89,8 +89,8 @@ import apiScenes from "./api/scenes.api";
 // import apiSessions from "./api/sessions.api";
 // import apiUsers from "./api/users.api";
 
-app.use("/api/characters", apiCharacters(router));
-app.use("/api/scenes", apiScenes(router));
+app.use("/api/characters", apiCharacters());
+app.use("/api/scenes", apiScenes());
 // app.use("/api/auth",          apiAuth());
 // app.use("/api/sessions",      apiSessions(passport)); //and namespacing the route as normal after the modified require line.
 // app.use("/api/users",         apiUsers());

@@ -1,3 +1,4 @@
+
 -- IliumDb
 --
 -- WARNING: Running this MySQL file will erase your current schema (if it exists) and all the data inside it!
@@ -11,6 +12,13 @@ CREATE DATABASE `iliumdb`;
 USE `iliumdb`;
 
 DROP TABLE IF EXISTS `db_info`;
+
+
+CREATE TABLE `project` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `character` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -33,18 +41,13 @@ INSERT INTO `db_info` (`id`, `key`, `value`)
 VALUES
 	(1,'framework_version','0.0.5');
 
-CREATE TABLE `project` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `scene` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `project_id` int(10) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `startPoint` bigint(20) unsigned NOT NULL DEFAULT '0',
-  `endPoint` bigint(20) unsigned NOT NULL DEFAULT '600000',
+  `start_point` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `end_point` bigint(20) unsigned NOT NULL DEFAULT '600000',
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`),
   CONSTRAINT `scene_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`)
@@ -55,8 +58,8 @@ CREATE TABLE `scene_character` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `character_id` int(10) unsigned NOT NULL,
   `scene_id` int(10) unsigned NOT NULL,
-  `startPoint` bigint(20) unsigned DEFAULT NULL,
-  `endPoint` bigint(20) unsigned DEFAULT NULL,
+  `start_point` bigint(20) unsigned DEFAULT NULL,
+  `end_point` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `character_id` (`character_id`),
   KEY `scene_id` (`scene_id`),

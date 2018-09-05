@@ -1,8 +1,9 @@
 import * as express from "express";
 import Character from "../models/character.model";
 
+let router = express.Router();
 //Router is namespaced in server.js to /api/sessions
-export default function (router: express.Router) {
+export default function () {
 
    router.get("/list", function (req: express.Request, res: express.Response, next: express.NextFunction) {
       Character.findAll()

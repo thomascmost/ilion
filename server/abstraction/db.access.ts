@@ -97,74 +97,14 @@ function updateDatabase(fwVersion: string)
    console.log(fwVersion);
    var dbUpdates = [
    {
-      "version" : "0.0.1",
-      "queries" : [
-        `CREATE TABLE db_info (
-         id int(10) unsigned NOT NULL AUTO_INCREMENT,
-         key varchar(255) NOT NULL,
-         value varchar(255) NOT NULL,
-         PRIMARY KEY (id)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`
-      ]
-   },
-   {
-      "version" : "0.0.2",
-      "queries" : [
-      `CREATE TABLE \`character\` (
-         id int(10) unsigned NOT NULL AUTO_INCREMENT,
-         name varchar(255) NOT NULL,
-         PRIMARY KEY (id)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`
-      ]
-   },
-   {
-      "version" : "0.0.3",
-      "queries" : [
-      `ALTER TABLE \`character\` ADD COLUMN gender varchar(255) NULL`
-      ]
-   },
-   {
       "version" : "0.0.5",
       "queries" : [
-        `CREATE TABLE project (
-         id int(10) unsigned NOT NULL AUTO_INCREMENT,
-         name varchar(255) NOT NULL,
-         PRIMARY KEY (id)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
-      `ALTER TABLE \`character\` ADD COLUMN project_id int(10) unsigned NOT NULL;`,
-      `ALTER TABLE \`character\` ADD FOREIGN KEY(project_id) REFERENCES project(id);`,
-      `INSERT INTO project (name) VALUES ('Three Sisters');`
+         ""
       ]
    },
    {
-      "version" : "0.0.7",
+      "version" : "0.0.6",
       "queries" : [
-        `CREATE TABLE scene (
-         id int(10) unsigned NOT NULL AUTO_INCREMENT,
-         project_id int(10) unsigned NOT NULL,
-         name varchar(255) NULL,
-         startPoint BIGINT UNSIGNED NOT NULL DEFAULT 0,
-         endPoint BIGINT UNSIGNED NOT NULL DEFAULT 600000,
-         PRIMARY KEY (id),
-         FOREIGN KEY(project_id) REFERENCES project(id)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`
-      ]
-   },
-   {
-      "version" : "0.0.8",
-      "queries" : [
-        `CREATE TABLE scene_character (
-         id int(10) unsigned NOT NULL AUTO_INCREMENT,
-         character_id int(10) unsigned NOT NULL,
-         scene_id int(10) unsigned NOT NULL,
-         startPoint BIGINT UNSIGNED NULL,
-         endPoint BIGINT UNSIGNED NULL,
-         PRIMARY KEY (id),
-         FOREIGN KEY(character_id) REFERENCES character(id),
-         FOREIGN KEY(scene_id) REFERENCES scene(id)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8;`,
-      `ALTER TABLE \`scene\` ADD COLUMN project_id int(10) unsigned NOT NULL;`,
-      `ALTER TABLE \`scene\` ADD FOREIGN KEY(project_id) REFERENCES project(id);`,
       ]
    }
   ];
