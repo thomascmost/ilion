@@ -12,48 +12,6 @@ interface ITimelineGridProps {
    list: any[];
 }
 
-const findFirstEmptySpace = (scenes: Scene[]) => {
-   let layout = createLayoutFromScenes(scenes);
-   let matrixHeight = 1;
-   let matrixWidth = 1;
-   for (const item of layout) {
-      let xBandwidth = item.x + item.w - 1;
-      let yBandwidth = item.y + item.h - 1;
-      matrixHeight = Math.max(matrixHeight, yBandwidth);
-      matrixWidth = Math.max(matrixWidth, xBandwidth);
-   }
-   const matrix = new Array(matrixHeight);
-   for (let row of matrix) {
-      row = new Array(matrixWidth);
-   }
-   for (const item of layout) {
-      let countDown = 0;
-      while (countDown <= item.h) {
-         const y = item.y + countDown
-         if (!matrix[y]) {
-            matrix[y] = [];
-         }
-         const row = matrix[item.y + countDown];
-         row[item.x] = true;
-         let countAcross = 1
-         while (countAcross < item.w) {
-            row[item.x + countAcross] = true;
-            countAcross ++;
-         }
-         countDown ++;
-      }
-   }
-   for (let y = 0; y < matrix.length; y++)
-   {
-      const row = matrix[y];
-      for (let x = 0; x < row.length; x++) {
-         if (!row[x] && !matrix[y+1][x]) {
-            return { x, y }
-         }
-      }
-   }
-}
-
 const createLayoutFromScenes = (scenes: Scene[]) =>
    scenes.map((scene) => ({
       i: scene.id.toString(),

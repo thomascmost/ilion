@@ -13,7 +13,7 @@ import iliumReducer from "./reducer";
 
 import createSagaMiddleware from "redux-saga";
 import characterSaga from "./modules/character/character.saga";
-import {sceneSaga, addSceneSaga} from "./modules/scene/scene.saga";
+import {sceneSaga, addSceneSaga, updateLayoutSaga} from "./modules/scene/scene.saga";
 const sagaMiddleware = createSagaMiddleware()
 
 import { App } from "./modules/app/app";
@@ -43,6 +43,7 @@ const store = createStore(
 sagaMiddleware.run(characterSaga);
 sagaMiddleware.run(sceneSaga);
 sagaMiddleware.run(addSceneSaga);
+sagaMiddleware.run(updateLayoutSaga);
 
 export abstract class WebApp {
    public static initialize ()

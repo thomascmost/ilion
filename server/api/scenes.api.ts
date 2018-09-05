@@ -28,6 +28,32 @@ export default function () {
       });
    });
 
+   router.put("/update-layout", function (req: express.Request, res: express.Response, next: express.NextFunction) {
+      let scenes = req.body.payload as Scene[];
+
+      Promise.all(scenes.map((scene) => {
+
+         scene.start_point = scene.gridY * 1000 * 60 * 5,
+         scene.end_point = scene.gridY * 1000 * 60 * 5 + scene.lengthGrid * 1000 * 60 * 5
+         return Scene.update({
+            x_col: scene.x_col,
+            start_point: scene.start_point,
+            end_point: scene.end_point
+         }, {
+            where: {
+               id: scene.id
+            }
+         })
+      }))
+      .then(function () {
+         return Scene.findAll()
+      })
+      .then( (scenes) =>
+      {
+         res.send(scenes);
+      });
+   });
+
    return router;
 
 }
