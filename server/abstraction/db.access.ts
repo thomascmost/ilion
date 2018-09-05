@@ -105,6 +105,7 @@ function updateDatabase(fwVersion: string)
    {
       "version" : "0.0.6",
       "queries" : [
+         `ALTER TABLE scene add column x_col INT NOT NULL DEFAULT 0`
       ]
    }
   ];

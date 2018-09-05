@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects"
 // import Api from "..."
-import { GET_SCENES_REQUEST, getScenesSuccess } from "./scene.actions";
+import { GET_SCENES_REQUEST, getScenesSuccess, addSceneSuccess, ADD_SCENE_REQUEST } from "./scene.actions";
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchList() {
@@ -29,8 +29,31 @@ function* fetchList() {
   dispatched while a fetch is already pending, that pending fetch is cancelled
   and only the latest one will be run.
 */
-function* sceneSaga() {
+export function* sceneSaga() {
   yield takeLatest(GET_SCENES_REQUEST, fetchList);
 }
 
-export default sceneSaga;
+
+// worker Saga: will be fired on USER_FETCH_REQUESTED actions
+function* addScene(scene: any) {
+   try {
+      const newScene = yield call(function () {
+         return fetch("/api/scenes/add", {
+            body: JSON.stringify(scene),
+            method: "POST",
+            headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            }
+         }).then( (response) => {
+            return response.json();
+         });
+      });
+      yield put(addSceneSuccess(newScene));
+   } catch (e) {
+      yield put({type: "USER_FETCH_FAILED", message: e.message});
+   }
+}
+export function* addSceneSaga() {
+  yield takeLatest(ADD_SCENE_REQUEST, addScene);
+}

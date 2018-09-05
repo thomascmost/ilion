@@ -10,7 +10,7 @@ export default class Scene extends Model<Scene> {
       this.lengthSeconds = (this.end_point - this.start_point) / 1000;
       this.lengthMinutes = this.lengthSeconds / 60;
       this.lengthGrid = this.lengthMinutes / 5;
-      this.gridX = 1;
+      this.gridX = this.x_col;
       this.gridY = this.start_point / 1000 / 60 / 5;
       this.colSpan = 1;
    }
@@ -33,7 +33,13 @@ export default class Scene extends Model<Scene> {
    id: number;
 
    @Column
+   project_id: number;
+
+   @Column
    name: string;
+
+   @Column
+   x_col: number;
 
    // in milliseconds from project start of 0
    @Column

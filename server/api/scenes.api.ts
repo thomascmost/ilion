@@ -14,11 +14,17 @@ export default function () {
    });
 
    router.post("/add", function (req: express.Request, res: express.Response, next: express.NextFunction) {
-      let scene = req.body;
+      let {x,y} = req.body.payload;
+      let scene = {
+         name: 'New Scene',
+         x_col: x,
+         start_point: y * 1000 * 60 * 5,
+         end_point: y * 1000 * 60 * 5 + (1000 * 60 * 10)
+      } as Scene;
       scene.project_id = 1;
       Scene.create(scene)
-      .then(function () {
-         res.sendStatus(200);
+      .then(function (scene) {
+         res.send(scene);
       });
    });
 
