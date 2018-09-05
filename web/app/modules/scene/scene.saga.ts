@@ -1,9 +1,8 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects"
-// import Api from "..."
-import { GET_SCENES_REQUEST, getScenesSuccess, addSceneSuccess, ADD_SCENE_REQUEST } from "./scene.actions";
+import { GET_SCENES_REQUEST, getScenesSuccess, addSceneSuccess, ADD_SCENE_REQUEST, UPDATE_SCENE_NAME, DELETE_SCENE_REQUEST } from "./scene.actions";
 import { CHANGE_LAYOUT } from "../timeline/timeline.actions";
+import Scene from "server/models/scene.model";
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchList() {
    try {
       const scenes = yield call(function () {
@@ -19,23 +18,15 @@ function* fetchList() {
       });
       yield put(getScenesSuccess(scenes));
    } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
+      // yield put({type: "USER_FETCH_FAILED", message: e.message});
    }
 }
 
-/*
-  Alternatively you may use takeLatest.
-
-  Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-  dispatched while a fetch is already pending, that pending fetch is cancelled
-  and only the latest one will be run.
-*/
 export function* sceneSaga() {
   yield takeLatest(GET_SCENES_REQUEST, fetchList);
 }
 
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* addScene(scene: any) {
    try {
       const newScene = yield call(function () {
@@ -52,7 +43,7 @@ function* addScene(scene: any) {
       });
       yield put(addSceneSuccess(newScene));
    } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
+      // yield put({type: "USER_FETCH_FAILED", message: e.message});
    }
 }
 export function* addSceneSaga() {
@@ -60,7 +51,6 @@ export function* addSceneSaga() {
 }
 
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* updateLayout(scenes: any[]) {
    try {
       const newScene = yield call(function () {
@@ -77,10 +67,61 @@ function* updateLayout(scenes: any[]) {
       });
       // yield put(addSceneSuccess(newScene));
    } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
+      // yield put({type: "USER_FETCH_FAILED", message: e.message});
    }
 }
 
 export function* updateLayoutSaga() {
-  yield takeLatest(CHANGE_LAYOUT, updateLayout);
+   // why?
+  yield takeLatest(CHANGE_LAYOUT as any, updateLayout);
+}
+
+function* updateName(payload: {scene:Scene}) {
+   try {
+      const scenes = yield call(function () {
+         return fetch("/api/scenes/update-name", {
+            body: JSON.stringify(payload),
+            method: "PUT",
+            headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            }
+         }).then( (response) => {
+            return response.json();
+         });
+      });
+      yield put(getScenesSuccess(scenes));
+   } catch (e) {
+      // yield put({type: "USER_FETCH_FAILED", message: e.message});
+   }
+}
+
+export function* updateNameSaga() {
+   // why?
+  yield takeEvery(UPDATE_SCENE_NAME as any, updateName);
+}
+
+function* deleteScene(payload: {id: number}) {
+   try {
+      const scenes = yield call(function () {
+         return fetch("/api/scenes/single", {
+            body: JSON.stringify(payload),
+            method: "DELETE",
+            headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            }
+         }).then( (response) => {
+            return response.json();
+         });
+      });
+      yield put(getScenesSuccess(scenes));
+   } catch (e) {
+      // yield put({type: "USER_FETCH_FAILED", message: e.message});
+   }
+}
+
+export function* deleteSceneSaga() {
+   // why?
+  yield takeEvery(DELETE_SCENE_REQUEST as any, deleteScene);
 }

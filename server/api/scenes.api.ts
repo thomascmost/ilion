@@ -54,6 +54,42 @@ export default function () {
       });
    });
 
+   router.put("/update-name", function (req: express.Request, res: express.Response, next: express.NextFunction) {
+      let scene = req.body.payload as Scene;
+
+      return Scene.update({
+         name: scene.name
+      }, {
+         where: {
+            id: scene.id
+         }
+      })
+      .then(function () {
+         return Scene.findAll()
+      })
+      .then( (scenes) =>
+      {
+         res.send(scenes);
+      });
+   });
+
+   router.delete("/single", function (req: express.Request, res: express.Response, next: express.NextFunction) {
+      let id = req.body.payload;
+
+      return Scene.destroy({
+         where: {
+            id
+         }
+      })
+      .then(function () {
+         return Scene.findAll()
+      })
+      .then((scenes) =>
+      {
+         res.send(scenes);
+      });
+   });
+
    return router;
 
 }

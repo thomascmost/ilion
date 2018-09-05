@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { changeLayout } from "./timeline.actions";
 import { getScenes } from "../scene/scene.actions";
 import Scene from "server/models/scene.model";
+import { SceneBlockContainer } from "./scene-block";
 
 interface ITimelineGridProps {
    onLayoutUpdate: (layout: Layout[]) => void;
@@ -31,11 +32,13 @@ class TimelineGrid extends React.Component<ITimelineGridProps> {
    onDragStop(layout: Layout[], oldItem: any, newItem: any,
       placeholder: any, e: MouseEvent, element: HTMLElement) {
       console.log(layout);
+      // test for equality of objects
       this.props.onLayoutUpdate(layout);
    }
    onResizeStop(layout: Layout[], oldItem: any, newItem: any,
       placeholder: any, e: MouseEvent, element: HTMLElement) {
       console.log(layout);
+      // test for equality of objects
       this.props.onLayoutUpdate(layout);
    }
    render() {
@@ -43,7 +46,9 @@ class TimelineGrid extends React.Component<ITimelineGridProps> {
       const layout = createLayoutFromScenes(this.props.list);
       const scenes = this.props.list.map((scene) => 
          <div key={scene.id}>
-            {scene.name}
+            <SceneBlockContainer
+               scene={scene}>
+            </SceneBlockContainer>
          </div>)
       return (
          <GridLayout
