@@ -140,23 +140,11 @@
     "testMatch": [
       "**/+(*.)+(spec|test).+(ts)?(x)"
     ],
-    "moduleNameMapper": {
-      "@ilion/models(.*)$": "<rootDir>/shared/models/$1",
-      "@ilion/effects(.*)$": "<rootDir>/shared/client/effects/$1",
-      "@ilion/stores(.*)$": "<rootDir>/shared/client/stores/$1",
-      "@ilion/shared(.*)$": "<rootDir>/shared/$1",
-      "@ilion/services(.*)$": "<rootDir>/shared/services/$1",
-      "@ilion/mocks(.*)$": "<rootDir>/shared/test/$1",
-      "@ilion/env(.*)$": "<rootDir>/web/$1"
-    },
     "moduleFileExtensions": [
       "ts",
+      "tsx",
       "js",
       "json"
     ]
-  },
-  "_moduleAliases": {
-    "@ilion/models": "dist/shared/models",
-    "@ilion/shared": "dist/shared"
   }
 }

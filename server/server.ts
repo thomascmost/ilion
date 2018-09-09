@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== "production") {
  }
 
 // Register our custom path resolution (see tsconfig.json)
-require("module-alias/register");
+// require("module-alias/register");
 
 // Import Express
 import * as express from "express";
