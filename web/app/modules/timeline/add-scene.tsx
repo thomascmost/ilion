@@ -11,7 +11,7 @@ interface IAddSceneAffordanceProps {
 
 const findFirstEmptySpace = (scenes: Scene[]) => {
    let layout = createLayoutFromScenes(scenes);
-   let matrixHeight = 1;
+   let matrixHeight = 2;
    let matrixWidth = 1;
    for (const item of layout) {
       let xBandwidth = item.x + item.w;

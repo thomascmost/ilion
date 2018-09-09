@@ -1,7 +1,9 @@
-import { Table, Column, Model, PrimaryKey, IBuildOptions, DataType } from "sequelize-typescript";
+import { Table, Column, Model, PrimaryKey, IBuildOptions, DataType, AutoIncrement } from "sequelize-typescript";
 import { FilteredModelAttributes } from "sequelize-typescript/lib/models/Model";
 
-@Table
+@Table({
+   tableName: "scene"
+})
 export default class Scene extends Model<Scene> {
 
 
@@ -29,6 +31,7 @@ export default class Scene extends Model<Scene> {
    colSpan: number;
 
    @PrimaryKey
+   @AutoIncrement
    @Column
    id: number;
 
