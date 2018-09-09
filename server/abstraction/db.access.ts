@@ -5,10 +5,7 @@ import { Sequelize } from "sequelize-typescript";
 import Env from "../env";
 import {initializeDB} from "./db.initializer";
 const sequelize = new Sequelize({
-   database: Env.MYSQL_DB,
-   username: Env.MYSQL_USER,
-   password: Env.MYSQL_PASS,
-   host: Env.MYSQL_HOST,
+   url: Env.DATABASE_URL,
    dialect: "postgres",
    port: 5432,
    modelPaths: [__dirname + "/../models"],
