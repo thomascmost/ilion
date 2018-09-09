@@ -59,6 +59,7 @@
     "react-svg": "^5.0.23",
     "redux": "^4.0.0",
     "redux-saga": "^0.16.0",
+    "reflect-metadata": "^0.1.12",
     "sanitize-html": "^1.18.5",
     "sequelize": "^4.38.0",
     "sequelize-typescript": "^0.6.6",
