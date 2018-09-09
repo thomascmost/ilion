@@ -16,8 +16,8 @@ export class App extends React.Component<IAppProps> {
                      <div className="application-wrapper">
                         <div className="header">
                            <Link to="/i" >
-                              <ReactSVG path="ilium.svg" />
-                              <h1>Ilium</h1>
+                              <ReactSVG path="ilion.svg" />
+                              <h1>Ilion</h1>
                            </Link>
                         </div>
                         <Route exact path="/login"

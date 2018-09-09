@@ -3,12 +3,14 @@
 // tslint:disable-next-line:variable-name
 import { Sequelize } from "sequelize-typescript";
 import Env from "../env";
+import {initializeDB} from "./db.initializer";
 const sequelize = new Sequelize({
    database: Env.MYSQL_DB,
    username: Env.MYSQL_USER,
    password: Env.MYSQL_PASS,
    host: Env.MYSQL_HOST,
-   dialect: "mysql",
+   dialect: "postgres",
+   port: 5432,
    modelPaths: [__dirname + "/../models"],
    pool: {
       max: 5,
@@ -17,6 +19,9 @@ const sequelize = new Sequelize({
       idle: 10000
    }
 });
+
+// initializeDB(sequelize);
+// var sequelize = new Sequelize("postgres://postgres:0pass@localhost:5432/iliondb");
 
 // Use this class to construct a general query object. The format is:
 // strQuery: The MySQL query string with ?'s for values.
@@ -73,23 +78,23 @@ function versionCompare(v1:string, v2:string) {
 //update script
 export function checkDatabaseVersion()
 {
-  // console.log("Preparing to connect to AWS")
-  // console.log("Connection Pool:\n")
-  // console.log(pool)
-  console.log("\n")
-  console.log("[DB]\tChecking database version...");
-  sequelize.query("SELECT `value` FROM `db_info` WHERE `key`='framework_version'")
-    .then(function(result: {value: string}[][] ) {
-    if (result.length < 1)
-    {
-      console.error("Missing record in db_info table. Database updates will not be automatic.")
-      console.error("Please set up the database from the init file in the #database channel on Slack.")
-    }
-    else
-    {
-      updateDatabase(result[0][0].value);
-    }
-  });
+   return initializeDB(sequelize)
+   .then(function () {
+      console.log("\n")
+      console.log("[DB]\tChecking database version...");
+      sequelize.query(`SET search_path='public'; SELECT value FROM db_info WHERE key='framework_version'`)
+        .then(function(result: {value: string}[][] ) {
+        if (result.length < 1)
+        {
+          console.error("Missing record in db_info table. Database updates will not be automatic.")
+          console.error("Please set up the database from the init file in the #database channel on Slack.")
+        }
+        else
+        {
+          updateDatabase(result[0][0].value);
+        }
+      });
+   });
 }
 
 function updateDatabase(fwVersion: string)
@@ -135,7 +140,7 @@ function updateDatabase(fwVersion: string)
   {
    //updates are happening
    console.log("[DB]\tUpdating database from " + fwVersion + " to " + latestVersion + ". This may take a few seconds...");
-   queriesNeeded.push("UPDATE `db_info` SET `value`='" + latestVersion + "' WHERE `key`='framework_version'");
+   queriesNeeded.push(`UPDATE "db_info" SET "value"='${latestVersion}' WHERE key='framework_version'`);
    return sequelize.transaction(function (t) {
       let promises = [];
       for (const query of queriesNeeded) {
@@ -147,6 +152,6 @@ function updateDatabase(fwVersion: string)
          });
       });
    } else {
-      console.log("[DB]\tYou're running IliumDB® v" + fwVersion + " and ready to go!");
+      console.log("[DB]\tYou're running IlionDB® v" + fwVersion + " and ready to go!");
    }
 }

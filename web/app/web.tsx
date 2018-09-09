@@ -9,7 +9,7 @@ import { createForms } from "react-redux-form";
 
 import { createBrowserHistory } from 'history'
 
-import iliumReducer from "./reducer";
+import ilionReducer from "./reducer";
 
 import createSagaMiddleware from "redux-saga";
 import characterSaga from "./modules/character/character.saga";
@@ -32,7 +32,7 @@ const middleware = routerMiddleware(history)
 const store = createStore(
    connectRouter(history)(
       combineReducers({
-      ...iliumReducer,
+      ...ilionReducer,
       ...createForms({
          character: {name: ""},
          login: { username: "rebis", password: "" }

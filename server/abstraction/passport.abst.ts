@@ -7,7 +7,7 @@ const passportJWT = require("passport-jwt");
 const jwtStrategy   = passportJWT.Strategy;
 const extractJWT = passportJWT.ExtractJwt;
 
-// var Token = require('@ilium/models/Token')
+// var Token = require('@ilion/models/Token')
 // var Utility = require('./Utilities')
 
 import { IUser } from "../../shared/interfaces/user";

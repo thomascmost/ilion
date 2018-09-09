@@ -1,6 +1,8 @@
 import { Table, Column, Model, PrimaryKey } from "sequelize-typescript";
 
-@Table
+@Table({
+   tableName: "character"
+})
 export default class Character extends Model<Character> {
 
    @PrimaryKey
