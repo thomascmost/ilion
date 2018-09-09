@@ -45,8 +45,7 @@
       "memberVariableDeclarator"],
     "use-strict": false,
     "variable-name": [
-        true,
-        "allow-leading-underscore"
+        false
     ],
     "whitespace": [
       true,

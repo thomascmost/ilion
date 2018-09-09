@@ -2,24 +2,23 @@ import { Sequelize } from "sequelize-typescript";
 
 const query = `
 CREATE TABLE project (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    name varchar(255) NOT NULL,
    PRIMARY KEY (id)
  );
  
  CREATE TABLE character (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    name varchar(255) NOT NULL,
    gender varchar(255) DEFAULT NULL,
    project_id int check (project_id > 0) NOT NULL,
-   PRIMARY KEY (id),
    CONSTRAINT character_ibfk_1 FOREIGN KEY (project_id) REFERENCES project (id)
  );
  
  CREATE INDEX character_project_id ON character (project_id);
  
  CREATE TABLE db_info (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    key varchar(255) NOT NULL,
    value varchar(255) NOT NULL,
    PRIMARY KEY (id)
@@ -30,7 +29,7 @@ CREATE TABLE project (
     (1,'framework_version','0.0.5');
  
  CREATE TABLE scene (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    project_id int check (project_id > 0) NOT NULL,
    name varchar(255) DEFAULT NULL,
    start_point bigint check (start_point > 0) NOT NULL DEFAULT '0',
@@ -43,7 +42,7 @@ CREATE TABLE project (
  CREATE INDEX scene_project_id ON scene (project_id);
  
  CREATE TABLE scene_character (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    character_id int check (character_id > 0) NOT NULL,
    scene_id int check (scene_id > 0) NOT NULL,
    start_point bigint check (start_point > 0) DEFAULT NULL,
@@ -59,7 +58,7 @@ CREATE TABLE project (
  
  
  CREATE TABLE "user" (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    profile_photo_id int check (profile_photo_id > 0) DEFAULT NULL,
    created timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
    updated timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -68,16 +67,14 @@ CREATE TABLE project (
    email varchar(100) NOT NULL,
    registered smallint NOT NULL DEFAULT '0',
    verified smallint NOT NULL DEFAULT '0',
-   PRIMARY KEY (id),
    CONSTRAINT user_handle UNIQUE  (handle),
    CONSTRAINT user_email UNIQUE  (email)
  );
  
  CREATE TABLE "user_login" (
-   id SERIAL,
+   id SERIAL PRIMARY KEY,
    user_id int check (user_id > 0) NOT NULL,
    timestamp timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY (id),
    CONSTRAINT user_login_ibfk_1 FOREIGN KEY (user_id) REFERENCES "user" (id) ON DELETE CASCADE ON UPDATE CASCADE
  );
  
@@ -88,8 +85,8 @@ CREATE TABLE project (
 
 export function initializeDB(conn: Sequelize) {
    return conn.query(`select * from information_schema.tables where table_name = 'db_info'`)
-   .then(function (rows: any[]) {
-      if (rows.length < 1) {
+   .then(function (res: any[]) {
+      if (res[0].length < 1) {
          return conn.query(query);
       }
    });
