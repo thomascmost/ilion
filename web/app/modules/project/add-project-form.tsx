@@ -1,17 +1,17 @@
 import * as React from "react";
 import { Control, Form } from "react-redux-form";
 import { connect } from "react-redux";
-import { getCharacterList } from "./character.actions";
+import { getProjects } from "./project.actions";
 
-interface ICharacterFormProps {
+interface IAddProjectFormProps {
    onSubmit: () => void;
 }
 
-class CharacterForm extends React.Component<ICharacterFormProps> {
+class AddProjectForm extends React.Component<IAddProjectFormProps> {
   handleSubmit(val: any) {
     // Do anything you want with the form value
     console.log(val);
-    fetch("/api/characters/add", {
+    fetch("/api/projects/add", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -28,8 +28,8 @@ class CharacterForm extends React.Component<ICharacterFormProps> {
     return (
       <div>
          <label>Quick Add</label>
-         <Form model="addCharacter" onSubmit={(val) => this.handleSubmit(val)}>
-            <label className="prompt">Character Name</label>
+         <Form model="addProject" onSubmit={(val) => this.handleSubmit(val)}>
+            <label className="prompt">Project Name</label>
             <Control.text model=".name" />
             <button>Submit!</button>
          </Form>
@@ -51,12 +51,12 @@ const mapStateToProps = () => {
 const mapDispatchToProps = (dispatch: any) => {
    return {
       onSubmit: () => {
-         dispatch(getCharacterList());
+         dispatch(getProjects());
       },
    };
 };
 
-export const CharacterFormContainer: React.ComponentClass<{}> = connect(
+export const AddProjectFormContainer: React.ComponentClass<{}> = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CharacterForm);
+)(AddProjectForm);

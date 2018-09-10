@@ -3,11 +3,11 @@ import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
-import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { connectRouter, routerMiddleware } from "connected-react-router"
 
 import { createForms } from "react-redux-form";
 
-import { createBrowserHistory } from 'history'
+import { createBrowserHistory } from "history";
 
 import ilionReducer from "./reducer";
 
@@ -18,6 +18,8 @@ const sagaMiddleware = createSagaMiddleware()
 
 import { App } from "./modules/app/app";
 import { getCharacterList } from "./modules/character/character.actions";
+import { getProjects } from "./modules/project/project.actions";
+import { getProjectsSaga } from "./modules/project/project.saga";
 
 // Polyfills
 var Promise = require( "promise-polyfill" );
@@ -34,7 +36,8 @@ const store = createStore(
       combineReducers({
       ...ilionReducer,
       ...createForms({
-         character: {name: ""},
+         addCharacter: {name: ""},
+         addProject: {name: ""},
          login: { username: "rebis", password: "" }
       }),
    })),
@@ -47,11 +50,13 @@ sagaMiddleware.run(addSceneSaga);
 sagaMiddleware.run(updateLayoutSaga);
 sagaMiddleware.run(deleteSceneSaga);
 sagaMiddleware.run(updateNameSaga);
+sagaMiddleware.run(getProjectsSaga);
 
 export abstract class WebApp {
    public static initialize ()
    {
       store.dispatch(getCharacterList());
+      store.dispatch(getProjects());
       console.log("rendering app");
       ReactDOM.render(
          <Provider store={store}>

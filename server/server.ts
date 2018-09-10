@@ -10,7 +10,6 @@ ___) (___| (____/\___) (___| (___) || )  \  |
 \_______/(_______/\_______/(_______)|/    )_)
 
 
-
 */
 
 // Import environment variables and config strings from .env
@@ -86,12 +85,14 @@ app.use(domainMiddleware);
 //requiring sessions as a function so that we can pass the passport object as a param
 import apiCharacters from "./api/characters.api";
 import apiScenes from "./api/scenes.api";
+import apiProjects from "./api/projects.api";
 // import apiAuth from "./api/auth.api";
 import apiSessions from "./api/sessions.api";
 // import apiUsers from "./api/users.api";
 
 app.use("/api/characters", apiCharacters());
 app.use("/api/scenes", apiScenes());
+app.use("/api/projects", apiProjects());
 // app.use("/api/auth",          apiAuth());
 app.use("/api/sessions",      apiSessions(passport));
 // app.use("/api/users",         apiUsers());
