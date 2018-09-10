@@ -3,8 +3,7 @@ import { Sequelize } from "sequelize-typescript";
 const query = `
 CREATE TABLE project (
    id SERIAL PRIMARY KEY,
-   name varchar(255) NOT NULL,
-   PRIMARY KEY (id)
+   name varchar(255) NOT NULL
  );
  
  CREATE TABLE character (
@@ -20,8 +19,7 @@ CREATE TABLE project (
  CREATE TABLE db_info (
    id SERIAL PRIMARY KEY,
    key varchar(255) NOT NULL,
-   value varchar(255) NOT NULL,
-   PRIMARY KEY (id)
+   value varchar(255) NOT NULL
  );
  
  INSERT INTO db_info (id, key, value)
@@ -33,8 +31,7 @@ CREATE TABLE project (
    project_id int check (project_id > 0) NOT NULL,
    name varchar(255) DEFAULT NULL,
    start_point bigint check (start_point > 0) NOT NULL DEFAULT '0',
-   end_point bigint check (end_point > 0) NOT NULL DEFAULT '600000',
-   PRIMARY KEY (id)
+   end_point bigint check (end_point > 0) NOT NULL DEFAULT '600000'
   ,
    CONSTRAINT scene_ibfk_1 FOREIGN KEY (project_id) REFERENCES project (id)
  );
@@ -46,8 +43,7 @@ CREATE TABLE project (
    character_id int check (character_id > 0) NOT NULL,
    scene_id int check (scene_id > 0) NOT NULL,
    start_point bigint check (start_point > 0) DEFAULT NULL,
-   end_point bigint check (end_point > 0) DEFAULT NULL,
-   PRIMARY KEY (id)
+   end_point bigint check (end_point > 0) DEFAULT NULL
   ,
    CONSTRAINT scene_character_ibfk_1 FOREIGN KEY (character_id) REFERENCES character (id),
    CONSTRAINT scene_character_ibfk_2 FOREIGN KEY (scene_id) REFERENCES scene (id)
