@@ -27,11 +27,11 @@ class AddProjectForm extends React.Component<IAddProjectFormProps> {
   render() {
     return (
       <div>
-         <label>Quick Add</label>
+         <label>Your Projects</label>
          <Form model="addProject" onSubmit={(val) => this.handleSubmit(val)}>
             <label className="prompt">Project Name</label>
             <Control.text model=".name" />
-            <button>Submit!</button>
+            <button>Add Project</button>
          </Form>
       </div>
     );
